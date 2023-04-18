@@ -4,11 +4,11 @@ import SignUp from "./pages/SignUp";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

@@ -49,12 +49,13 @@ function CustomCheckbox({ ...props }) {
         <div className="ml-3 text-sm">
           <label
             htmlFor="terms"
-            className="font-light text-gray-500 dark:text-gray-300"
+            className="font-light tracking-wide text-white 
+            text-sm"
           >
             I accept the{" "}
             <span
-              className="font-medium text-teal-600 hover:underline 
-              dark:text-teal-500"
+              className="font-bold text-white hover:underline 
+              dark:text-teal-500 hover:cursor-pointer"
               onClick={buttonHandler}
             >
               Terms and Conditions

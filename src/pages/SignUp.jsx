@@ -49,23 +49,30 @@ function SignUp() {
   };
 
   return (
-    <section className="bg-primary dark:bg-gray-900 py-16 flex items-center">
-      <div className=" w-5/6 flex flex-col lg:flex-row mx-auto bg-white rounded-xl shadow-2xl">
+    <section
+      className="bg-primary dark:bg-gray-900 py-9 flex 
+    items-center"
+    >
+      <div
+        className=" w-5/6 flex flex-col lg:flex-row mx-auto 
+      bg-primary rounded-xl"
+      >
         <div
           className="bg-primary py-20 bg-cover w-full lg:w-1/2 mr-0 flex rounded-bl-xl 
         flex-col justify-center items-center rounded-tl-xl"
         >
-          <h1 className=" font-bold text-6xl text-white">tokoku</h1>
+          <h1 className=" font-medium tracking-tighter text-6xl text-white">
+            tokoku
+          </h1>
           <p
-            className=" text-base font-normal text-light opacity-60
-           max-w-sm text-center pt-2"
+            className=" text-base font-normal text-light
+           max-w-md text-center pt-8 tracking-widest"
           >
-            <span className="text-3xl">"</span>
-            Revolutionize your business{" "}
-            <span className="font-bold text-xl text-white">
+            revolutionize your business{" "}
+            <span className="font-extrabold text-xl text-white">
               productivity
             </span>{" "}
-            with our innovative cloud-based point-of-sale app.
+            with our innovative cloud-based point-of-sale app
           </p>
         </div>
         <div className="w-full lg:w-1/2 ml-0">
@@ -74,15 +81,15 @@ function SignUp() {
           px-6 mx-auto lg:py-0"
           >
             <div
-              className="w-full bg-white rounded-lg dark:border 
+              className="w-full bg-primary rounded-lg dark:border 
             md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
             >
-              <div className="p-6 space-y-4 md:space-y-8 sm:p-8">
+              <div className="p-6 space-y-4 md:space-y-12 sm:p-8">
                 <h1
-                  className="text-xl font-bold leading-tight tracking-tight
-                text-primary md:text-2xl dark:text-white text-sec"
+                  className="text-xl font-bold leading-tight
+                text-white md:text-3xl dark:text-white text-sec text-center"
                 >
-                  Create an account
+                  create new account
                 </h1>
                 {backResponse.message && (
                   <div className="relative m-0 p-0">
@@ -146,18 +153,21 @@ function SignUp() {
                         />
                         <button
                           type="submit"
-                          className="w-full shadow-md text-white bg-primary hover:bg-primary
-                          focus:ring-4 focus:outline-none focus:ring-primary font-medium
-                          rounded-full text-sm px-5 py-2.5 text-center dark:bg-primary 
-                          dark:hover:bg-primary dark:focus:ring-primary"
+                          className="w-full shadow-md text-white bg-secondary hover:bg-secondary
+                          focus:ring-4 focus:outline-none focus:ring-secondary font-medium
+                          rounded-full text-base px-5 h-10 text-center dark:bg-secondary 
+                          dark:hover:bg-secondary dark:focus:ring-secondary tracking-widest"
                         >
-                          Create an account
+                          REGISTER
                         </button>
-                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                        <p
+                          className="text-sm font-light text-white 
+                        dark:text-gray-400 tracking-wide"
+                        >
                           Already have an account?{" "}
                           <span
-                            className="font-medium text-primary hover:underline 
-                    dark:text-primary"
+                            className="font-bold text-white hover:underline 
+                           dark:text-white hover:cursor-pointer"
                           >
                             Login here
                           </span>

@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#14b8a6",
-        tertiary: "#16a34a",
-        dark: "#334155",
-        secondary: "#64748b",
+        primary: "#2EC4B6",
+        tertiary: "#FFBF69",
+        light: "#CBF3F0",
+        secondary: "#FF9F1C",
       },
       backgroundImage: {
         "hero-pattern": "url('/src/assets/images/cart-icon.png')",

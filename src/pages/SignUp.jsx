@@ -89,9 +89,9 @@ function SignUp() {
                               aria-describedby="terms"
                               type="checkbox"
                               className="w-4 h-4 border border-gray-300 rounded 
-                      bg-gray-50 focus:ring-3 focus:ring-primary 
-                      dark:bg-gray-700 dark:border-gray-600 
-                      dark:focus:ring-primary dark:ring-offset-gray-800"
+                             bg-gray-50 focus:ring-3 focus:ring-primary 
+                             dark:bg-gray-700 dark:border-gray-600 
+                             dark:focus:ring-primary dark:ring-offset-gray-800"
                               required=""
                             />
                           </div>

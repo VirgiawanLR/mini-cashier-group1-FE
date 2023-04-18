@@ -22,13 +22,13 @@ function CustomCheckbox({ ...props }) {
             className="relative mx-auto overflow-x overflow-y-auto bg-white h-5/6 w-fit rounded-xl
           py-20 px-20"
           >
-            <a
+            <span
               className="text-gray-800 font-bold text-xl
               absolute right-4 top-4 hover:cursor-pointer"
               onClick={buttonHandler}
             >
               x
-            </a>
+            </span>
             <div className="max-w-lg">
               <TermsAndCondition />
             </div>
@@ -52,13 +52,13 @@ function CustomCheckbox({ ...props }) {
             className="font-light text-gray-500 dark:text-gray-300"
           >
             I accept the{" "}
-            <a
+            <span
               className="font-medium text-teal-600 hover:underline 
               dark:text-teal-500"
               onClick={buttonHandler}
             >
               Terms and Conditions
-            </a>
+            </span>
           </label>
         </div>
       </div>

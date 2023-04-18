@@ -14,7 +14,7 @@ function SignUp() {
       .min(8, "Password is too short - at least 8 chars minimum")
       .matches(
         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-        "Password should contain atleast one number and one special character"
+        "Must contain one number and one special character"
       )
       .required("Must not blank"),
     phoneNumber: Yup.number().required("Must not blank"),
@@ -37,9 +37,9 @@ function SignUp() {
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1
                   className="text-xl font-bold leading-tight tracking-tight
-              text-gray-900 md:text-2xl dark:text-white"
+              text-gray-900 md:text-xl dark:text-white"
                 >
-                  Create and account
+                  Create an account
                 </h1>
                 <Formik
                   initialValues={{

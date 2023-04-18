@@ -16,7 +16,9 @@ function SignUp() {
         "Password should contain atleast one number and one special character"
       )
       .required("Must not blank"),
-    phoneNumber: Yup.number().required("Must not blank"),
+    phoneNumber: Yup.number()
+      .required("Must not blank")
+      .min(7, "at least 7 char"),
   });
   return (
     <section classNameName="bg-gray-50 dark:bg-gray-900">

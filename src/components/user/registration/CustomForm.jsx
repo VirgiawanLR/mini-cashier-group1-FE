@@ -1,53 +1,30 @@
 import React from "react";
 import { useField } from "formik";
-import { Input, Ripple, initTE } from "tw-elements";
 
 function CustomForm({ label, ...props }) {
   const [field, meta] = useField(props);
-  initTE({ Input, Ripple });
   return (
     <div className="relative">
       <div className="relative" data-te-input-wrapper-init>
         <input
           {...field}
           {...props}
-          className="peer block min-h-[auto] w-full rounded border-0
-        bg-transparent px-3 py-[0.32rem] leading-[2.15] 
-        outline-none transition-all duration-200 
-        ease-linear focus:placeholder:opacity-100 
-        data-[te-input-state-active]:placeholder:opacity-100 
-        motion-reduce:transition-none dark:text-neutral-200 
-        dark:placeholder:text-neutral-200 
-        [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-        />
-        <label
-          for={props.id}
           className={
-            !(meta.touched && meta.error)
-              ? "pointer-events-none absolute left-3 " +
-                "top-0 mb-0 max-w-[90%] origin-[0_0] " +
-                "truncate pt-[0.37rem] leading-[2.15] " +
-                "text-neutral-500 transition-all duration-200 " +
-                "ease-out peer-focus:-translate-y-[1.15rem] " +
-                "peer-focus:scale-[0.8] peer-focus:text-primary " +
-                "peer-data-[te-input-state-active]:-translate-y-[1.15rem] " +
-                "peer-data-[te-input-state-active]:scale-[0.8] " +
-                "motion-reduce:transition-none dark:text-neutral-200 " +
-                "dark:peer-focus:text-primary"
-              : "pointer-events-none absolute left-3 " +
-                "top-0 mb-0 max-w-[90%] origin-[0_0] " +
-                "truncate pt-[0.37rem] leading-[2.15] " +
-                "text-red-500 transition-all duration-200 " +
-                "ease-out peer-focus:-translate-y-[1.15rem] " +
-                "peer-focus:scale-[0.8] peer-focus:text-red-500 " +
-                "peer-data-[te-input-state-active]:-translate-y-[1.15rem] " +
-                "peer-data-[te-input-state-active]:scale-[0.8] " +
-                "motion-reduce:transition-none dark:text-neutral-200 " +
-                "dark:peer-focus:text-red-500"
+            meta.touched && meta.error
+              ? " placeholder:text-sm text-sm placeholder-red-400 bg-red-50 border-2" +
+                " border-red-500 text-red-900 h-10 my-auto" +
+                " sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full" +
+                " p-2.5 dark:bg-gray-700 dark:border-2 dark:border-red-600 dark:placeholder-gray-400" +
+                " dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" +
+                " lg:placeholder:text-base lg:text-base"
+              : " placeholder:text-sm text-sm bg-gray-50 border border-gray-300 text-gray-900" +
+                " sm:text-sm rounded-lg h-10 my-auto" +
+                " focus:ring-light focus:border-light block w-full p-2.5 dark:bg-gray-700" +
+                " dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" +
+                " dark:focus:ring-primary dark:focus:border-primary" +
+                " lg:placeholder:text-base lg:text-base"
           }
-        >
-          {label}
-        </label>
+        />
       </div>
       {meta.touched && meta.error && (
         <div className="absolute text-red-600 text-xs pt-1 font-normal">

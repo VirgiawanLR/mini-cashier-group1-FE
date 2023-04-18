@@ -3,28 +3,54 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TermsAndCondition from "../components/user/registration/TermsAndCondition";
 import CustomForm from "../components/user/registration/CustomForm";
+import CustomCheckbox from "../components/user/registration/CustomCheckbox";
 
 function SignUp() {
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
   const registerSchema = Yup.object().shape({
     username: Yup.string().required("Must not blank"),
     email: Yup.string()
       .required("Must not blank")
       .email("Invalid email format"),
     password: Yup.string()
-      .min(8, "Password is too short - at least 8 chars minimum")
-      .matches(
-        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-        "Must contain one number and one special character"
-      )
+      .min(5, "Password is too short - at least 5 chars minimum")
+      // .matches(
+      //   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+      //   "Must contain one number and one special character"
+      // )
       .required("Must not blank"),
-    phoneNumber: Yup.number().required("Must not blank"),
+    phoneNumber: Yup.string()
+      .required("Must not blank")
+      .matches(phoneRegExp, "Phone number is not valid"),
+    acceptedTOS: Yup.boolean().oneOf(
+      [true],
+      "Please accept the terms of Service"
+    ),
   });
   const onSubmit = () => {};
 
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 h-screen flex items-center">
-      <div className=" w-5/6 h-5/6 flex flex-col lg:flex-row mx-auto bg-white rounded-xl shadow ">
-        <div className="bg-hero-pattern bg-cover w-full lg:w-1/2 mr-0 rounded-bl-xl rounded-tl-xl"></div>
+    <section className="bg-gray-50 dark:bg-gray-900 h-screen flex items-center">
+      <div className=" w-5/6 h-5/6 flex flex-col lg:flex-row mx-auto bg-white rounded-xl shadow-lg ">
+        <div
+          className="bg-primary bg-cover w-full lg:w-1/2 mr-0 flex rounded-bl-xl 
+        flex-col justify-center items-center rounded-tl-xl"
+        >
+          <h1 className=" font-bold text-6xl text-white">tokoku</h1>
+          <p
+            className=" text-base font-normal text-light opacity-60
+           max-w-sm text-center pt-2"
+          >
+            <span className="text-3xl">"</span>
+            Revolutionize your business{" "}
+            <span className="font-bold text-xl text-white">
+              productivity
+            </span>{" "}
+            with our innovative cloud-based point-of-sale app.
+          </p>
+        </div>
         <div className="w-full lg:w-1/2 ml-0">
           <div
             className="flex flex-col items-center justify-center 
@@ -37,7 +63,7 @@ function SignUp() {
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1
                   className="text-xl font-bold leading-tight tracking-tight
-              text-gray-900 md:text-xl dark:text-white"
+              text-primary md:text-xl dark:text-white text-sec"
                 >
                   Create an account
                 </h1>
@@ -47,6 +73,7 @@ function SignUp() {
                     email: "",
                     password: "",
                     phoneNumber: "",
+                    acceptedTOS: true,
                   }}
                   validationSchema={registerSchema}
                   onSubmit={onSubmit}
@@ -77,40 +104,16 @@ function SignUp() {
                         />
                         <CustomForm
                           name="phoneNumber"
-                          type="tel"
+                          type="text"
                           id="phoneNumber"
                           placeholder="Phone Number"
                           label="Phone Number"
                         />
-                        <div className="flex items-start">
-                          <div className="flex items-center h-5">
-                            <input
-                              id="terms"
-                              aria-describedby="terms"
-                              type="checkbox"
-                              className="w-4 h-4 border border-gray-300 rounded 
-                             bg-gray-50 focus:ring-3 focus:ring-primary 
-                             dark:bg-gray-700 dark:border-gray-600 
-                             dark:focus:ring-primary dark:ring-offset-gray-800"
-                              required=""
-                            />
-                          </div>
-                          <div className="ml-3 text-sm">
-                            <label
-                              for="terms"
-                              className="font-light text-gray-500 dark:text-gray-300"
-                            >
-                              I accept the{" "}
-                              <a
-                                className="font-medium text-primary hover:underline
-                         dark:text-primary"
-                                href="#"
-                              >
-                                Terms and Conditions
-                              </a>
-                            </label>
-                          </div>
-                        </div>
+                        <CustomCheckbox
+                          id="acceptedTOS"
+                          name="acceptedTOS"
+                          type="checkbox"
+                        />
                         <button
                           type="submit"
                           className="w-full text-white bg-primary hover:bg-primary

@@ -153,10 +153,10 @@ function SignUp() {
                         />
                         <button
                           type="submit"
-                          className="w-full shadow-md text-white bg-secondary hover:bg-secondary
+                          className="w-full shadow-md text-white bg-secondary hover:bg-tertiary
                           focus:ring-4 focus:outline-none focus:ring-secondary font-medium
-                          rounded-full text-base px-5 h-10 text-center dark:bg-secondary 
-                          dark:hover:bg-secondary dark:focus:ring-secondary tracking-widest"
+                          rounded-full text-sm px-5 h-10 text-center tracking-widest
+                           transition ease-in-out duration-200"
                         >
                           REGISTER
                         </button>

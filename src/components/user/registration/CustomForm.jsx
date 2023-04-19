@@ -27,7 +27,7 @@ function CustomForm({ label, ...props }) {
         />
       </div>
       {meta.touched && meta.error && (
-        <div className="absolute tracking-wider text-red-600 text-xs left-3 top-12 pt-1 font-normal">
+        <div className="absolute tracking-wider text-red-600 text-xs left-3 top-10 pt-1 font-normal">
           {meta.error}
         </div>
       )}

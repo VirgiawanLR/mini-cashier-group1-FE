@@ -5,12 +5,10 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Categories from "./pages/Categories";
 import Transactions from "./pages/Transactions";
-import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
     <>
-      <Sidebar />
       <Routes>
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/home" element={<Home />} />

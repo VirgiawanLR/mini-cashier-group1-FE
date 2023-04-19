@@ -1,53 +1,103 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-    return (
-        <div className="
-grid
-grid-cols-1
-bg-primary
-gap-14
-py-10
-px-8
-justify-items-center
-w-60
-h-screen
+  return (
+    <div
+      className="
+flex
 
        ">
-
-            <div
-                onClick={() => { navigate("/") }}
-                className="
+        <div
+        className="
+        bg-primary
+px-8
+justify-items-center
+w-full
+h-screen
+        ">
+            
+       
+      <div
+        onClick={() => {
+          navigate("/");
+        }}
+        className="
                 font-semibold 
                 text-5xl 
                 text-white 
                 hover:cursor-pointer 
-                hover:text-dark
+                hover:text-light
+                py-12
                 "
-            >tokoku</div>
+      >
+        tokoku
+      </div>
 
-<div className="
+      <div
+        className="
 text-white
 font-regular
 justify-center
-">
-    <p>Hello,</p>
-    <p>username</p>
-</div>
+py-10
+"
+      >
+        <p>Hello,</p>
+        <p>username</p>
+      </div>
 
-            <div className="grid text-white font-extrabold gap-5 justify-items-start">
-                <button onClick={() => { navigate("/home") }}>Home</button>
-                <button onClick={() => { navigate("/products") }}>Products</button>
-                <button onClick={() => { navigate("/categories") }}>Categories</button>
-                <button onClick={() => { navigate("/transactions") }}>Transactions</button>
-            </div >
+      <div className="grid text-white font-extrabold gap-5 py-8 justify-items-start">
+        <button
+        className="
+        hover:text-light
+        "
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
+          Home
+        </button>
+        <button
+         className="
+         hover:text-light
+         "
+          onClick={() => {
+            navigate("/products");
+          }}
+        >
+          Products
+        </button>
+        <button
+         className="
+         hover:text-light
+         "
+          onClick={() => {
+            navigate("/categories");
+          }}
+        >
+          Categories
+        </button>
+        <button
+         className="
+         hover:text-light
+         "
+          onClick={() => {
+            navigate("/transactions");
+          }}
+        >
+          Transactions
+        </button>
+      </div>
 
-<div>
-    <button
-    className="
+      <div
+      className="
+      pt-20
+      pb-6
+      "
+      >
+        <button
+          className="
     bg-secondary
     text-white
     font-bold
@@ -55,12 +105,19 @@ justify-center
     py-2
     px-10
     shadow-lg
+    hover:scale-105
+    transition
+    ease-in-out
+    delay-50
     "
-    >LOGOUT</button>
-</div>
+        >
+          LOGOUT
+        </button>
+      </div>
+    </div>
 
-        </div >
-    )
+    </div>
+  );
 }
 
-export default Sidebar
+export default Sidebar;

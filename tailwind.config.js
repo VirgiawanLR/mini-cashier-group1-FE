@@ -11,7 +11,7 @@ module.exports = {
         tertiary: "#FFBF69",
         light: "#CBF3F0",
         secondary: "#FF9F1C",
-        dark: "0F534C",
+        dark: "#0F534C",
       },
       backgroundImage: {
         "hero-pattern": "url('/src/assets/images/cart-icon.png')",

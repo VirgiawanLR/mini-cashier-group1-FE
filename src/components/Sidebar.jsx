@@ -13,7 +13,6 @@ flex
         className="
         bg-primary
 px-8
-justify-items-center
 w-full
 h-screen
         ">
@@ -30,6 +29,7 @@ h-screen
                 hover:cursor-pointer 
                 hover:text-light
                 py-12
+                text-center
                 "
       >
         tokoku
@@ -39,7 +39,7 @@ h-screen
         className="
 text-white
 font-regular
-justify-center
+text-center
 py-10
 "
       >
@@ -47,7 +47,7 @@ py-10
         <p>username</p>
       </div>
 
-      <div className="grid text-white font-extrabold gap-5 py-8 justify-items-start">
+      <div className="grid text-white font-extrabold gap-5 py-8 px-5 justify-items-start">
         <button
         className="
         hover:text-light
@@ -92,23 +92,20 @@ py-10
 
       <div
       className="
-      pt-20
-      pb-6
+      pt-20 pb-6
+      flex flex-col items-center
       "
       >
         <button
           className="
     bg-secondary
-    text-white
-    font-bold
+    text-white font-bold
     rounded-full
-    py-2
-    px-10
+    py-2 px-10
+    fixed bottom-0 mb-16
     shadow-lg
     hover:scale-105
-    transition
-    ease-in-out
-    delay-50
+    transition ease-in-out delay-50
     "
         >
           LOGOUT

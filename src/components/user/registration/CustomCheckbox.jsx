@@ -41,9 +41,7 @@ function CustomCheckbox({ ...props }) {
             {...field}
             {...props}
             className="w-4 h-4 border border-gray-300 rounded 
-          bg-gray-50 focus:ring-3 focus:ring-teal-300 
-          dark:bg-gray-700 dark:border-gray-600 
-          dark:focus:ring-teal-600 dark:ring-offset-gray-800"
+          bg-gray-50 focus:ring-3 focus:ring-teal-300 "
           />
         </div>
         <div className="ml-3 text-sm">
@@ -55,7 +53,7 @@ function CustomCheckbox({ ...props }) {
             I accept the{" "}
             <span
               className="font-bold text-white hover:underline 
-              dark:text-teal-500 hover:cursor-pointer"
+              hover:cursor-pointer"
               onClick={buttonHandler}
             >
               Terms and Conditions

@@ -50,7 +50,7 @@ function SignUp() {
 
   return (
     <section
-      className="bg-primary dark:bg-gray-900 py-9 flex 
+      className="bg-primary py-9 flex 
     items-center"
     >
       <div
@@ -81,13 +81,13 @@ function SignUp() {
           px-6 mx-auto lg:py-0"
           >
             <div
-              className="w-full bg-primary rounded-lg dark:border 
-            md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+              className="w-full bg-primary rounded-lg 
+              md:mt-0 sm:max-w-md xl:p-0"
             >
               <div className="p-6 space-y-4 md:space-y-12 sm:p-8">
                 <h1
                   className="text-xl font-bold leading-tight
-                text-white md:text-3xl dark:text-white text-sec text-center"
+                text-white md:text-3xl text-sec text-center"
                 >
                   create new account
                 </h1>
@@ -162,12 +162,12 @@ function SignUp() {
                         </button>
                         <p
                           className="text-sm font-light text-white 
-                        dark:text-gray-400 tracking-wide"
+                          tracking-wide"
                         >
                           Already have an account?{" "}
                           <span
                             className="font-bold text-white hover:underline 
-                           dark:text-white hover:cursor-pointer"
+                            hover:cursor-pointer"
                           >
                             Login here
                           </span>

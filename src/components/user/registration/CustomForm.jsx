@@ -12,17 +12,17 @@ function CustomForm({ label, ...props }) {
           className={
             meta.touched && meta.error
               ? " placeholder:text-sm text-sm placeholder-red-400 bg-red-50 border-2" +
-                " border-red-500 text-red-900 h-10 my-8 tracking-wider" +
+                " border-red-500 text-red-900 h-10 my-8 tracking-[0.13rem]" +
                 " sm:text-sm rounded-full shadow-xl focus:ring-red-600 focus:border-red-600 block w-full" +
                 " px-3 dark:bg-gray-700 dark:border-2 dark:border-red-600 dark:placeholder-gray-400" +
                 " dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" +
-                "  placeholder:tracking-widest tracking-widest"
+                "  placeholder:tracking-[0.13rem] tracking-[0.13rem]"
               : " placeholder:text-sm text-sm bg-gray-50 border border-gray-300 text-gray-900" +
-                " sm:text-sm rounded-full shadow-xl h-10 my-8 tracking-wider" +
+                " sm:text-sm rounded-full shadow-xl h-10 my-8 tracking-[0.13rem]" +
                 " focus:ring-light focus:border-light block w-full px-3 dark:bg-gray-700" +
                 " dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" +
                 " dark:focus:ring-primary dark:focus:border-primary" +
-                "  placeholder:tracking-widest tracking-widest"
+                "  placeholder:tracking-[0.13rem] tracking-[0.13rem]"
           }
         />
       </div>

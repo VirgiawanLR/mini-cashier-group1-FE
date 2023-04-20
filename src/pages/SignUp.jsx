@@ -16,23 +16,23 @@ function SignUp() {
   const backResponse = useSelector((state) => state.user.backEndResponse);
 
   const registerSchema = Yup.object().shape({
-    username: Yup.string().required("Must not blank"),
+    username: Yup.string().required("must not blank"),
     email: Yup.string()
-      .required("Must not blank")
-      .email("Invalid email format"),
+      .required("must not blank")
+      .email("invalid email format"),
     password: Yup.string()
-      .min(5, "Password is too short - at least 5 chars minimum")
+      .min(5, "password is too short - at least 5 chars minimum")
       // .matches(
       //   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-      //   "Must contain one number and one special character"
+      //   "must contain one number and one special character"
       // )
-      .required("Must not blank"),
+      .required("must not blank"),
     phoneNumber: Yup.string()
-      .required("Must not blank")
-      .matches(phoneRegExp, "Phone number is not valid"),
+      .required("must not blank")
+      .matches(phoneRegExp, "phone number is not valid"),
     acceptedTOS: Yup.boolean().oneOf(
       [true],
-      "Please accept the terms of Service"
+      "please accept the terms of Service"
     ),
   });
   const onSubmit = async (values, action) => {
@@ -171,12 +171,15 @@ function SignUp() {
                           tracking-wide"
                         >
                           Already have an account?{" "}
-                          <span
+                          <button
+                            onClick={() => {
+                              navigate("/login");
+                            }}
                             className="font-bold text-white hover:underline 
                             hover:cursor-pointer"
                           >
                             Login here
-                          </span>
+                          </button>
                         </p>
                       </Form>
                     );

@@ -50,7 +50,7 @@ function SignUp() {
 
   return (
     <section
-      className="bg-primary py-9 flex 
+      className="bg-primary py-7 flex 
     items-center"
     >
       <div
@@ -61,7 +61,7 @@ function SignUp() {
           className="bg-primary py-20 bg-cover w-full lg:w-1/2 mr-0 flex rounded-bl-xl 
         flex-col justify-center items-center rounded-tl-xl"
         >
-          <h1 className=" font-medium tracking-tighter text-6xl text-white">
+          <h1 className=" font-semibold -tracking-widest text-6xl text-white">
             tokoku
           </h1>
           <p
@@ -84,26 +84,28 @@ function SignUp() {
               className="w-full bg-primary rounded-lg 
               md:mt-0 sm:max-w-md xl:p-0"
             >
-              <div className="p-6 space-y-4 md:space-y-12 sm:p-8">
-                <h1
-                  className="text-xl font-bold leading-tight
-                text-white md:text-3xl text-sec text-center"
-                >
-                  create new account
-                </h1>
-                {backResponse.message && (
-                  <div className="relative m-0 p-0">
-                    {backResponse.isSuccess ? (
-                      <p className=" text-sm text-primary font-semibold">
-                        Check your email for verification
-                      </p>
-                    ) : (
-                      <p className=" text-sm text-red-400 font-semibold">
-                        {backResponse.message}
-                      </p>
-                    )}
-                  </div>
-                )}
+              <div className="p-6 space-y-16 sm:p-8">
+                <div className=" w-fit relative mx-auto">
+                  <h1
+                    className="text-2xl font-bold leading-tight
+                    text-white md:text-3xl text-center"
+                  >
+                    create new account
+                  </h1>
+                  {backResponse.message && (
+                    <div className="absolute top-10">
+                      {backResponse.isSuccess ? (
+                        <p className=" text-sm text-primary font-semibold">
+                          Check your email for verification
+                        </p>
+                      ) : (
+                        <p className=" text-sm text-red-600 font-semibold">
+                          {backResponse.message}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
                 <Formik
                   initialValues={{
                     username: "",
@@ -122,44 +124,44 @@ function SignUp() {
                           name="username"
                           type="text"
                           id="username"
-                          placeholder="Username"
-                          label="Username"
+                          placeholder="username"
                         />
                         <CustomForm
                           name="email"
                           type="email"
                           id="email"
-                          placeholder="Email"
-                          label="Email"
+                          placeholder="email"
                         />
                         <CustomForm
                           name="password"
                           type="password"
                           id="password"
-                          placeholder="Password"
-                          label="Password"
+                          placeholder="password"
                         />
                         <CustomForm
                           name="phoneNumber"
                           type="text"
                           id="phoneNumber"
-                          placeholder="Phone Number"
-                          label="Phone Number"
+                          placeholder="phone number"
                         />
                         <CustomCheckbox
                           id="acceptedTOS"
                           name="acceptedTOS"
                           type="checkbox"
                         />
+
                         <button
                           type="submit"
-                          className="w-full shadow-md text-white bg-secondary hover:bg-tertiary
-                          focus:ring-4 focus:outline-none focus:ring-secondary font-medium
-                          rounded-full text-sm px-5 h-10 text-center tracking-widest
-                           transition ease-in-out duration-200"
+                          className="w-full mx-auto shadow-md text-white 
+                          bg-secondary hover:bg-tertiary
+                          focus:ring-4 focus:outline-none focus:ring-secondary 
+                          font-extrabold rounded-full text-xs px-5 h-10 
+                          text-center tracking-[0.13rem]
+                          transition ease-in-out duration-200"
                         >
                           REGISTER
                         </button>
+
                         <p
                           className="text-sm font-light text-white 
                           tracking-wide"

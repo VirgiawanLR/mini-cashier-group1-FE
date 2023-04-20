@@ -25,6 +25,7 @@ h-screen
         className="
                 font-semibold 
                 text-5xl 
+                tracking-tightest
                 text-white 
                 hover:cursor-pointer 
                 hover:text-light

@@ -4,7 +4,7 @@ function Middle() {
   return (
     <div
     className='
-    bg-dark
+    bg-light
     w-full
     h-screen
     '>

@@ -10,7 +10,7 @@ function Cart(props) {
     return (
 <div
 className='
-bg-tertiary
+bg-white
 w-full
 h-screen
 '

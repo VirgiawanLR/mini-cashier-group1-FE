@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react"
 import { useState } from "react"
 import '../index.css'
-import Cart from "../components/Cart"
+import Cart from "../components/cart/Cart"
 import Sidebar from "../components/Sidebar"
-import Middle from "../components/Middle"
+import ProductHome from "../components/products/ProductHome"
 
 function Home() {
 
@@ -16,7 +16,7 @@ function Home() {
             <Sidebar />
         </div>
         <div className="w-7/12">
-            <Middle />
+            <ProductHome />
         </div>
         <div className="w-1/4">
         <Cart />

@@ -15,7 +15,7 @@ function CustomForm({ label, ...props }) {
                 " border-red-500 text-red-900 h-10 my-8 tracking-[0.13rem]" +
                 " sm:text-sm rounded-full shadow-xl focus:ring-red-600 focus:border-red-600 block w-full" +
                 " px-5 placeholder:tracking-[0.13rem] tracking-[0.13rem]"
-              : " placeholder:text-sm text-sm bg-gray-50 border border-gray-300 text-gray-900" +
+              : " placeholder:text-sm text-sm bg-gray-50 border border-gray-300 text-dark" +
                 " sm:text-sm rounded-full shadow-xl h-10 my-8 tracking-[0.13rem]" +
                 " focus:ring-light focus:border-light block w-full px-5" +
                 " placeholder:tracking-[0.13rem] tracking-[0.13rem]"

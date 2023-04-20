@@ -34,10 +34,27 @@ export function postNewUserData(data) {
     try {
       let response = await axios.post(`${userAPI}/register`, data);
       dispatch(setResponse(response.data));
-      console.log(response);
     } catch (error) {
-      console.log(error);
       dispatch(setResponse(error.response.data));
+    }
+  };
+}
+
+export function newUserVerification(token) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.patch(
+        `${userAPI}/verify-account`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return error.response.data;
     }
   };
 }

@@ -35,8 +35,9 @@ function SignUp() {
       "Please accept the terms of Service"
     ),
   });
-  const onSubmit = (values, action) => {
-    console.log(values);
+  const onSubmit = async (values, action) => {
+    let registerBtn = document.querySelector("#register");
+    registerBtn.disabled = true;
     const { username, email, password, phoneNumber } = values;
     let dataToSend = {
       username,
@@ -44,8 +45,8 @@ function SignUp() {
       password,
       phone_number: phoneNumber,
     };
-    dispatch(postNewUserData(dataToSend));
-    console.log(action);
+    await dispatch(postNewUserData(dataToSend));
+    registerBtn.disabled = false;
   };
 
   return (
@@ -69,7 +70,7 @@ function SignUp() {
            max-w-md text-center pt-8 tracking-widest"
           >
             revolutionize your business{" "}
-            <span className="font-extrabold text-xl text-white">
+            <span className="font-extrabold text-xl text-dark">
               productivity
             </span>{" "}
             with our innovative cloud-based point-of-sale app
@@ -88,15 +89,15 @@ function SignUp() {
                 <div className=" w-fit relative mx-auto">
                   <h1
                     className="text-2xl font-bold leading-tight
-                    text-white md:text-3xl text-center"
+                    text-dark md:text-3xl text-center"
                   >
                     create new account
                   </h1>
                   {backResponse.message && (
-                    <div className="absolute top-10">
+                    <div className="absolute top-12 ">
                       {backResponse.isSuccess ? (
-                        <p className=" text-sm text-primary font-semibold">
-                          Check your email for verification
+                        <p className=" text-sm text-white font-semibold">
+                          check your email for verification
                         </p>
                       ) : (
                         <p className=" text-sm text-red-600 font-semibold">
@@ -152,12 +153,15 @@ function SignUp() {
 
                         <button
                           type="submit"
-                          className="w-full mx-auto shadow-md text-white 
+                          id="register"
+                          className="w-full mx-auto shadow-dark 
+                          shadow-lg text-white 
                           bg-secondary hover:bg-tertiary
                           focus:ring-4 focus:outline-none focus:ring-secondary 
-                          font-extrabold rounded-full text-xs px-5 h-10 
-                          text-center tracking-[0.13rem]
-                          transition ease-in-out duration-200"
+                          font-bold rounded-full text-base px-5 h-10 
+                          text-center tracking-[0.18rem]
+                          transition ease-in-out duration-200
+                           disabled:hover:bg-secondary disabled:hover:cursor-wait"
                         >
                           REGISTER
                         </button>

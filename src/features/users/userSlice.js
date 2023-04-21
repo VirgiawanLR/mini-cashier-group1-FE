@@ -58,3 +58,22 @@ export function newUserVerification(token) {
     }
   };
 }
+
+export function userLogin(data) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.post(`${userAPI}/login`, data);
+      const { token, user } = response.data.data;
+      localStorage.setItem("user_token", token);
+      dispatch(
+        setLoggedInUser({ ...user, isSuccess: response.data.isSuccess })
+      );
+      return {
+        message: response.data.message,
+        isSuccess: response.data.isSuccess,
+      };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}

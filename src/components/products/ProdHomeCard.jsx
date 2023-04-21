@@ -1,20 +1,23 @@
 import React from "react";
 
 
-function prodHomeCard(props) {
+function ProdHomeCard(props) {
   const { product } = props;
 
   return (
     <div
       className="
-        flex
         bg-dark
-        rounded-full
-        text-black
-        justify-center
+        rounded-xl
+        p-5
+        text-white
+        h-max w-full
         ">
 
       <div>
+        {/* image
+        name
+        price */}
         <p>{product.id}</p>
         <p>{product.productName}</p>
         <p>{product.productPrice}</p>
@@ -33,6 +36,6 @@ function prodHomeCard(props) {
   );
 }
 
-export default prodHomeCard;
+export default ProdHomeCard;
 
 // ada add to cart button

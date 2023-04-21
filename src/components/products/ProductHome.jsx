@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
-import prodHomeCard from "./cards/prodHomeCard"
+import ProdHomeCard from "./ProdHomeCard"
 import { fetchProducts } from "../../features/products/productSlice"
 
 function ProductHome() {
@@ -11,7 +11,7 @@ function ProductHome() {
 
     const renderProductList = () => {
         return productListConnect.map((product) => {
-            return <prodHomeCard product={product} />
+            return <ProdHomeCard product={product} />
         })
     }
 
@@ -73,15 +73,24 @@ function ProductHome() {
 
 
     return (
-        <div className="w-1/4 mx-auto">
+        <div className=" h-screen flex flex-col gap-2 mx-auto bg-green-400 p-10">
+
             <div>
-            <h1 className="text-2xl font-bold">Product Home</h1>
+            <h1 className="text-2xl font-bold bg-red">Product Home</h1>
             {/* <input type="text" onChange={inputHandler} />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={addTodo}>Add</button> */}
             </div>
-            <div>
+
+            <div className="
+            grid grid-cols-3 gap-3
+            bg-green-200
+            p-5
+            items-center
+            h-max w-full
+            ">
             {renderProductList()}
             </div>
+
         </div>
     )
 }

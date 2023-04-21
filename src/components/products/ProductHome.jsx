@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import ProdHomeCard from "./ProdHomeCard"
 import { fetchProducts } from "../../features/products/productSlice"
@@ -15,42 +14,6 @@ function ProductHome() {
         })
     }
 
-        // component didMount
-        // useEffect(() => {
-        //     dispatch(fetchProducts())
-        //  }, [])
-
-    // const productData = useSelector((state) => state.product.productData)
-  // useState -> dummy data
-//   const [prodDetail, setProdDetail] = useState([
- 
-// ])
-
-    // const [todoList, setTodoList] = useState([])
-    // const [newTodo, setNewTodo] = useState("")
-
-    // const fetchProduct = () => {
-    //     Axios.get("http://localhost:2000/todo").then((response) => {
-    //         console.log(response.data)
-    //         setTodoList(response.data)
-    //     })
-    // }
-
-
-
-    // const renderList = () => {
-    //     return productList.map((product) => {
-    //         return (
-    //             <prodHomeCard product={productListConnect} />
-    //             // <div className="p-4">
-    //             //     <p>{product.productName}</p>
-    //             //     <p>{product.productPrice}</p>
-    //             // </div>
-    //         )
-            
-    //     })
-    // }
-
     // const deleteTodo = (id) => {
     //     Axios.delete("http://localhost:2000/todo/" + id).then((response) => {
     //         fetchData() // refresh data setelah di-delete
@@ -61,19 +24,12 @@ function ProductHome() {
     //     setNewTodo(event.target.value)
     // }
 
-    // const addTodo = async () => {
-    //     try {
-    //         await Axios.post("http://localhost:2000/todo", { activity: newTodo })
-    //         fetchData()
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-
+    useEffect(() => {
+        dispatch(fetchProducts())
+    }, [])
 
     return (
-        <div className=" h-screen flex flex-col gap-2 mx-auto bg-green-400 p-10">
+        <div className=" h-screen flex flex-col gap-2 mx-auto bg-light p-10">
 
             <div>
             <h1 className="text-2xl font-bold bg-red">Product Home</h1>
@@ -83,10 +39,9 @@ function ProductHome() {
 
             <div className="
             grid grid-cols-3 gap-3
-            bg-green-200
-            p-5
+            bg-dark
+            p-5 h-full w-full
             items-center
-            h-max w-full
             ">
             {renderProductList()}
             </div>

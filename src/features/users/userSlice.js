@@ -77,3 +77,28 @@ export function userLogin(data) {
     }
   };
 }
+
+export function keepLogIn(token) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.post(
+        `${userAPI}/keep-login`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch(
+        setLoggedInUser({
+          ...response.data.data,
+          isSuccess: response.data.isSuccess,
+        })
+      );
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+}

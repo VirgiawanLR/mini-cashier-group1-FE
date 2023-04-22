@@ -6,12 +6,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        tightest: "-8.5%",
+      },
       colors: {
         primary: "#2EC4B6",
         tertiary: "#FFBF69",
         light: "#CBF3F0",
         secondary: "#FF9F1C",
         dark: "#0F534C",
+        red: "#E64040",
       },
       backgroundImage: {
         "hero-pattern": "url('/src/assets/images/cart-icon.png')",

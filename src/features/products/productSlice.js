@@ -23,25 +23,32 @@ export const productSlice = createSlice({
       productName: "",
       productPrice: 0,
     },
+    totalCount: 0,
   },
+
   reducers: {
     setProductList: (state, action) => {
       state.productList = action.payload;
-      // payload = data yg dikirim dari dispatch() di bawah
     },
 
     setProduct: (state, action) => {
       state.product = action.payload;
     },
+    setTotalCount: (state, action) => {
+      state.totalCount = action.payload;
+    },
   },
 });
 
-export const { setProductList, setProduct } = productSlice.actions;
+export const { setProductList, setProduct, setTotalCount } =
+  productSlice.actions;
 export default productSlice.reducer;
 
 export function fetchProducts() {
   return async (dispatch) => {
     let response = await axios.get("http://localhost:8000/product/home");
-    dispatch(setProductList(response.data));
+    // let responseCount = await axios.get(``);
+    dispatch(setProductList(response.data.products));
+    dispatch(setTotalCount(response.data.count));
   };
 }

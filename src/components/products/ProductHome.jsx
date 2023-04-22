@@ -40,22 +40,25 @@ function ProductHome() {
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={addTodo}>Add</button> */}
             </div>
 
-            <div className="
+{/* cards & pagination */}
+<div className="flex flex-col">
+
+<div className="
             grid grid-cols-3 gap-3
             bg-dark
             p-5 h-full w-full
             items-center
             ">
             {renderProductList()}
-            {/* <Pagination
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        totalItems={data.length}
-        onPageChange={onPageChange}
-        onItemsPerPageChange={onItemsPerPageChange}
-      /> */}
-      {/* <PaginationTailwind /> */}
+</div>
+<div>
 <Pagination />
+</div>
+
+
+
+            
+
             </div>
 
         </div>

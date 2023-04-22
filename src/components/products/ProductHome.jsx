@@ -1,15 +1,14 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import ProdHomeCard from "./ProdHomeCard"
-import { fetchProducts } from "../../features/products/productSlice"
+import { fetchProducts, fetchProductRange } from "../../features/products/productSlice"
 import Pagination from "../Pagination"
-import PaginationTailwind from "../PaginationTailwind"
 
 function ProductHome() {
-
+const navigate = useNavigate()
     const dispatch = useDispatch()
     const productListConnect = useSelector((state) => state.product.productList)
-    const totalCountConnect = useSelector((state) => state.product.totalCount)
 
     const renderProductList = () => {
         return productListConnect.map((product) => {
@@ -29,6 +28,10 @@ function ProductHome() {
 
     useEffect(() => {
         dispatch(fetchProducts())
+    }, [])
+
+    useEffect(() => {
+        dispatch(fetchProductRange())
     }, [])
 
     return (

@@ -18,37 +18,45 @@ export const productSlice = createSlice({
       // { productName: "Longan", productPrice: "10000", id: 8 },
       // { productName: "Lychee", productPrice: "3000", id: 9 },
     ],
-    productData: {
-      id: 0,
-      productName: "",
-      productPrice: 0,
-    },
     totalCount: 0,
+    productRange: {
+      indexStart: 0,
+      indexEnd: 9,
+    },
   },
 
   reducers: {
     setProductList: (state, action) => {
       state.productList = action.payload;
     },
-
-    setProduct: (state, action) => {
-      state.product = action.payload;
-    },
     setTotalCount: (state, action) => {
       state.totalCount = action.payload;
+    },
+    setProductRange: (state, action) => {
+      state.productRange.indexStart = action.payload.indexStart;
+      state.productRange.indexEnd = action.payload.indexEnd;
     },
   },
 });
 
-export const { setProductList, setProduct, setTotalCount } =
+export const { setProductList, setTotalCount, setProductRange } =
   productSlice.actions;
 export default productSlice.reducer;
 
 export function fetchProducts() {
   return async (dispatch) => {
-    let response = await axios.get("http://localhost:8000/product/home");
+    let response = await axios.get("http://localhost:8000/home");
     // let responseCount = await axios.get(``);
     dispatch(setProductList(response.data.products));
     dispatch(setTotalCount(response.data.count));
+    dispatch(setProductRange(response.data.productRange));
+  };
+}
+export function fetchProductRange() {
+  return async (dispatch) => {
+    let response = await axios.get("http://localhost:8000/home/next");
+    dispatch(setProductList(response.data.products));
+    dispatch(setTotalCount(response.data.count));
+    dispatch(setProductRange(response.data.productRange));
   };
 }

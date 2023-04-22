@@ -16,27 +16,28 @@ function SignUp() {
   const backResponse = useSelector((state) => state.user.backEndResponse);
 
   const registerSchema = Yup.object().shape({
-    username: Yup.string().required("Must not blank"),
+    username: Yup.string().required("must not blank"),
     email: Yup.string()
-      .required("Must not blank")
-      .email("Invalid email format"),
+      .required("must not blank")
+      .email("invalid email format"),
     password: Yup.string()
-      .min(5, "Password is too short - at least 5 chars minimum")
+      .min(5, "password is too short - at least 5 chars minimum")
       // .matches(
       //   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-      //   "Must contain one number and one special character"
+      //   "must contain one number and one special character"
       // )
-      .required("Must not blank"),
+      .required("must not blank"),
     phoneNumber: Yup.string()
-      .required("Must not blank")
-      .matches(phoneRegExp, "Phone number is not valid"),
+      .required("must not blank")
+      .matches(phoneRegExp, "phone number is not valid"),
     acceptedTOS: Yup.boolean().oneOf(
       [true],
-      "Please accept the terms of Service"
+      "please accept the terms of Service"
     ),
   });
-  const onSubmit = (values, action) => {
-    console.log(values);
+  const onSubmit = async (values, action) => {
+    let registerBtn = document.querySelector("#register");
+    registerBtn.disabled = true;
     const { username, email, password, phoneNumber } = values;
     let dataToSend = {
       username,
@@ -44,13 +45,13 @@ function SignUp() {
       password,
       phone_number: phoneNumber,
     };
-    dispatch(postNewUserData(dataToSend));
-    console.log(action);
+    await dispatch(postNewUserData(dataToSend));
+    registerBtn.disabled = false;
   };
 
   return (
     <section
-      className="bg-primary py-9 flex 
+      className="bg-primary py-7 flex 
     items-center"
     >
       <div
@@ -61,7 +62,7 @@ function SignUp() {
           className="bg-primary py-20 bg-cover w-full lg:w-1/2 mr-0 flex rounded-bl-xl 
         flex-col justify-center items-center rounded-tl-xl"
         >
-          <h1 className=" font-medium tracking-tighter text-6xl text-white">
+          <h1 className=" font-semibold -tracking-widest text-6xl text-white">
             tokoku
           </h1>
           <p
@@ -69,7 +70,7 @@ function SignUp() {
            max-w-md text-center pt-8 tracking-widest"
           >
             revolutionize your business{" "}
-            <span className="font-extrabold text-xl text-white">
+            <span className="font-extrabold text-xl text-dark">
               productivity
             </span>{" "}
             with our innovative cloud-based point-of-sale app
@@ -84,26 +85,28 @@ function SignUp() {
               className="w-full bg-primary rounded-lg 
               md:mt-0 sm:max-w-md xl:p-0"
             >
-              <div className="p-6 space-y-4 md:space-y-12 sm:p-8">
-                <h1
-                  className="text-xl font-bold leading-tight
-                text-white md:text-3xl text-sec text-center"
-                >
-                  create new account
-                </h1>
-                {backResponse.message && (
-                  <div className="relative m-0 p-0">
-                    {backResponse.isSuccess ? (
-                      <p className=" text-sm text-primary font-semibold">
-                        Check your email for verification
-                      </p>
-                    ) : (
-                      <p className=" text-sm text-red-400 font-semibold">
-                        {backResponse.message}
-                      </p>
-                    )}
-                  </div>
-                )}
+              <div className="p-6 space-y-16 sm:p-8">
+                <div className=" w-fit relative mx-auto">
+                  <h1
+                    className="text-2xl font-bold leading-tight
+                    text-dark md:text-3xl text-center"
+                  >
+                    create new account
+                  </h1>
+                  {backResponse.message && (
+                    <div className="absolute top-12 ">
+                      {backResponse.isSuccess ? (
+                        <p className=" text-sm text-white font-semibold">
+                          check your email for verification
+                        </p>
+                      ) : (
+                        <p className=" text-sm text-red-600 font-semibold">
+                          {backResponse.message}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
                 <Formik
                   initialValues={{
                     username: "",
@@ -122,55 +125,61 @@ function SignUp() {
                           name="username"
                           type="text"
                           id="username"
-                          placeholder="Username"
-                          label="Username"
+                          placeholder="username"
                         />
                         <CustomForm
                           name="email"
                           type="email"
                           id="email"
-                          placeholder="Email"
-                          label="Email"
+                          placeholder="email"
                         />
                         <CustomForm
                           name="password"
                           type="password"
                           id="password"
-                          placeholder="Password"
-                          label="Password"
+                          placeholder="password"
                         />
                         <CustomForm
                           name="phoneNumber"
                           type="text"
                           id="phoneNumber"
-                          placeholder="Phone Number"
-                          label="Phone Number"
+                          placeholder="phone number"
                         />
                         <CustomCheckbox
                           id="acceptedTOS"
                           name="acceptedTOS"
                           type="checkbox"
                         />
+
                         <button
                           type="submit"
-                          className="w-full shadow-md text-white bg-secondary hover:bg-tertiary
-                          focus:ring-4 focus:outline-none focus:ring-secondary font-medium
-                          rounded-full text-sm px-5 h-10 text-center tracking-widest
-                           transition ease-in-out duration-200"
+                          id="register"
+                          className="w-full mx-auto shadow-dark 
+                          shadow-lg text-white 
+                          bg-secondary hover:bg-tertiary
+                          focus:ring-4 focus:outline-none focus:ring-secondary 
+                          font-bold rounded-full text-base px-5 h-10 
+                          text-center tracking-[0.18rem]
+                          transition ease-in-out duration-200
+                           disabled:hover:bg-secondary disabled:hover:cursor-wait"
                         >
                           REGISTER
                         </button>
+
                         <p
                           className="text-sm font-light text-white 
                           tracking-wide"
                         >
                           Already have an account?{" "}
-                          <span
+                          <button
+                            onClick={() => {
+                              navigate("/login");
+                            }}
                             className="font-bold text-white hover:underline 
                             hover:cursor-pointer"
                           >
                             Login here
-                          </span>
+                          </button>
                         </p>
                       </Form>
                     );

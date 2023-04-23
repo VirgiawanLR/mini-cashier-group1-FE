@@ -25,12 +25,21 @@ export const productSlice = createSlice({
       indexStart: 0,
       indexEnd: 9,
       itemsPerPage: 9,
+      maxPage: 0,
     },
   },
 
   reducers: {
     setAllProductList: (state, action) => {
       state.allProductList = action.payload;
+      state.selectProductList = state.allProductList.filter((product) => {
+        if (
+          product.product_ID >= state.pageData.indexStart &&
+          product.product_ID <= state.pageData.indexEnd
+        ) {
+          return true;
+        }
+      });
     },
     setSelectProductList: (state) => {
       state.selectProductList = state.allProductList.filter((product) => {
@@ -43,7 +52,7 @@ export const productSlice = createSlice({
       });
     },
     setTotalCount: (state, action) => {
-      state.totalCount = action.payload;
+      state.pageData.totalCount = action.payload;
     },
     nextPage: (state) => {
       state.pageData.currentPage += 1;
@@ -59,6 +68,11 @@ export const productSlice = createSlice({
       state.pageData.indexEnd =
         state.pageData.indexStart + state.pageData.itemsPerPage;
     },
+    setMaxPage: (state) => {
+      state.pageData.maxPage = Math.ceil(
+        state.pageData.totalCount / state.pageData.itemsPerPage
+      );
+    },
   },
 });
 
@@ -68,6 +82,7 @@ export const {
   setTotalCount,
   nextPage,
   prevPage,
+  setMaxPage,
 } = productSlice.actions;
 export default productSlice.reducer;
 
@@ -75,6 +90,8 @@ export function getProducts() {
   return async (dispatch) => {
     let response = await axios.get("http://localhost:8000/home");
     dispatch(setAllProductList(response.data.products));
+    dispatch(setTotalCount(response.data.count));
+    dispatch(setMaxPage());
   };
 }
 

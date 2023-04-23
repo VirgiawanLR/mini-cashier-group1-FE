@@ -7,11 +7,10 @@ import Pagination from "../Pagination"
 function ProductHome() {
 
     const dispatch = useDispatch()
-    const allProductList = useSelector((state) => state.product.allProductList)
-    const selectProductList = useSelector((state) => state.product.allProductList)
+    const selectProductList = useSelector((state) => state.product.selectProductList)
 
     const renderProductList = () => {
-        return allProductList.map((product) => {
+        return selectProductList.map((product) => {
             return <ProdHomeCard product={product} />
         })
     }
@@ -21,6 +20,7 @@ function ProductHome() {
     }, [])
 
     useEffect(() => {
+        renderProductList();
         dispatch(fetchProducts())
     }, [selectProductList])
 
@@ -30,8 +30,6 @@ function ProductHome() {
 
             <div>
             <h1 className="text-2xl font-bold bg-red">Product Home</h1>
-            {/* <input type="text" onChange={inputHandler} />
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={addTodo}>Add</button> */}
             </div>
 
 {/* cards & pagination */}

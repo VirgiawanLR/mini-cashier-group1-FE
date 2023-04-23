@@ -6,7 +6,7 @@ import axios from "axios";
 export const productSlice = createSlice({
   name: "product",
   initialState: {
-    productList: [
+    allProductList: [
       // dummy data please erase when finalized
       // { productName: "Apple", productPrice: "5000", id: 1 },
       // { productName: "Melon", productPrice: "25000", id: 2 },
@@ -18,45 +18,68 @@ export const productSlice = createSlice({
       // { productName: "Longan", productPrice: "10000", id: 8 },
       // { productName: "Lychee", productPrice: "3000", id: 9 },
     ],
-    totalCount: 0,
-    productRange: {
+    selectProductList: [],
+    pageData: {
+      totalCount: 0,
+      currentPage: 1,
       indexStart: 0,
       indexEnd: 9,
+      itemsPerPage: 9,
     },
   },
 
   reducers: {
-    setProductList: (state, action) => {
-      state.productList = action.payload;
+    setAllProductList: (state, action) => {
+      state.allProductList = action.payload;
+    },
+    setSelectProductList: (state) => {
+      state.selectProductList = state.allProductList.filter((product) => {
+        if (
+          product.product_ID >= state.pageData.indexStart &&
+          product.product_ID <= state.pageData.indexEnd
+        ) {
+          return true;
+        }
+      });
     },
     setTotalCount: (state, action) => {
       state.totalCount = action.payload;
     },
-    setProductRange: (state, action) => {
-      state.productRange.indexStart = action.payload.indexStart;
-      state.productRange.indexEnd = action.payload.indexEnd;
+    nextPage: (state) => {
+      state.pageData.currentPage += 1;
+      state.pageData.indexStart =
+        (state.pageData.currentPage - 1) * state.pageData.itemsPerPage;
+      state.pageData.indexEnd =
+        state.pageData.indexStart + state.pageData.itemsPerPage;
+    },
+    prevPage: (state) => {
+      state.pageData.currentPage -= 1;
+      state.pageData.indexStart =
+        (state.pageData.currentPage - 1) * state.pageData.itemsPerPage;
+      state.pageData.indexEnd =
+        state.pageData.indexStart + state.pageData.itemsPerPage;
     },
   },
 });
 
-export const { setProductList, setTotalCount, setProductRange } =
-  productSlice.actions;
+export const {
+  setAllProductList,
+  setSelectProductList,
+  setTotalCount,
+  nextPage,
+  prevPage,
+} = productSlice.actions;
 export default productSlice.reducer;
+
+export function getProducts() {
+  return async (dispatch) => {
+    let response = await axios.get("http://localhost:8000/home");
+    dispatch(setAllProductList(response.data.products));
+  };
+}
 
 export function fetchProducts() {
   return async (dispatch) => {
-    let response = await axios.get("http://localhost:8000/home");
-    // let responseCount = await axios.get(``);
-    dispatch(setProductList(response.data.products));
-    dispatch(setTotalCount(response.data.count));
-    dispatch(setProductRange(response.data.productRange));
-  };
-}
-export function fetchProductRange() {
-  return async (dispatch) => {
-    let response = await axios.get("http://localhost:8000/home/next");
-    dispatch(setProductList(response.data.products));
-    dispatch(setTotalCount(response.data.count));
-    dispatch(setProductRange(response.data.productRange));
+    dispatch(setSelectProductList());
   };
 }

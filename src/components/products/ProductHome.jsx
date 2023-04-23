@@ -1,38 +1,29 @@
 import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import ProdHomeCard from "./ProdHomeCard"
-import { fetchProducts, fetchProductRange } from "../../features/products/productSlice"
+import { getProducts, fetchProducts } from "../../features/products/productSlice"
 import Pagination from "../Pagination"
 
 function ProductHome() {
-const navigate = useNavigate()
+
     const dispatch = useDispatch()
-    const productListConnect = useSelector((state) => state.product.productList)
+    const allProductList = useSelector((state) => state.product.allProductList)
+    const selectProductList = useSelector((state) => state.product.allProductList)
 
     const renderProductList = () => {
-        return productListConnect.map((product) => {
+        return allProductList.map((product) => {
             return <ProdHomeCard product={product} />
         })
     }
 
-    // const deleteTodo = (id) => {
-    //     Axios.delete("http://localhost:2000/todo/" + id).then((response) => {
-    //         fetchData() // refresh data setelah di-delete
-    //     })
-    // }
-
-    // const inputHandler = (event) => {
-    //     setNewTodo(event.target.value)
-    // }
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [])
 
     useEffect(() => {
         dispatch(fetchProducts())
-    }, [])
+    }, [selectProductList])
 
-    useEffect(() => {
-        dispatch(fetchProductRange())
-    }, [])
 
     return (
         <div className=" h-screen flex flex-col gap-2 mx-auto bg-light p-10">
@@ -57,10 +48,6 @@ const navigate = useNavigate()
 <div>
 <Pagination />
 </div>
-
-
-
-            
 
             </div>
 

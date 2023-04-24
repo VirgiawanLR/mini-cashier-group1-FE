@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const navigate = useNavigate();
+
+  const loggedInUser = useSelector((state) => state.user.loggedInUser)
 
   return (
     <div
@@ -33,7 +36,7 @@ flex
           text-center py-10"
         >
           <p>Hello,</p>
-          <p>username</p>
+          <p>{loggedInUser.username}</p>
         </div>
 
         <div className="grid text-white font-extrabold gap-5 py-8 px-5 justify-items-start">

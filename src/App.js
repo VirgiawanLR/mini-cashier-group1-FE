@@ -2,8 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
-import Products from "./components/products/ProductHome";
-
+import Products from "./pages/Products";
 import Verification from "./pages/Verification";
 import LogIn from "./pages/LogIn";
 import FrontPage from "./pages/FrontPage";
@@ -30,8 +29,7 @@ function App() {
             <Route path="/products" element={<Products />} />
 
             {/* user state => not loggedin: if user access the unauthorized 
-            routes, then the user
-            will be redirect into the <Home>/landing page */}
+            routes, then the user will be redirect into the <Home>/landing page */}
             <Route path="/*" element={<Home />} />
           </>
         ) : (
@@ -42,8 +40,7 @@ function App() {
             <Route path="/" element={<FrontPage />} />
 
             {/* user state => not loggedin: if user access the unauthorized routes, 
-            then the user
-            will be redirect into the <Home>/landing page */}
+            then the user will be redirect into the <Home>/landing page */}
             <Route path="/*" element={<FrontPage />} />
           </>
         )}

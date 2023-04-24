@@ -2,7 +2,7 @@ import { render } from "@testing-library/react"
 import '../index.css'
 import Cart from "../components/cart/Cart"
 import Sidebar from "../components/Sidebar"
-import ProductHome from "../components/products/ProductHome"
+import ProductProducts from "../components/products/ProductProducts"
 
 function Home() {
 
@@ -15,7 +15,7 @@ function Home() {
             <Sidebar />
         </div>
         <div className="w-7/12">
-            <ProductHome />
+            <ProductProducts />
         </div>
         <div className="w-1/4">
         <Cart />

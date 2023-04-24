@@ -1,53 +1,61 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from 'react-redux'
-import ProdHomeCard from "./ProdHomeCard"
-import { fetchProducts } from "../../features/products/productSlice"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ProdHomeCard from "./ProdHomeCard";
+import {
+  getProducts,
+  fetchProducts,
+} from "../../features/products/productSlice";
+import Pagination from "../Pagination";
 
 function ProductHome() {
+  const dispatch = useDispatch();
+  const selectProductList = useSelector(
+    (state) => state.product.selectProductList
+  );
 
-    const dispatch = useDispatch()
-    const productListConnect = useSelector((state) => state.product.productList)
+  const renderProductList = () => {
+    return selectProductList.map((product) => {
+      return <ProdHomeCard product={product} />;
+    });
+  };
 
-    const renderProductList = () => {
-        return productListConnect.map((product) => {
-            return <ProdHomeCard product={product} />
-        })
-    }
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
-    // const deleteTodo = (id) => {
-    //     Axios.delete("http://localhost:2000/todo/" + id).then((response) => {
-    //         fetchData() // refresh data setelah di-delete
-    //     })
-    // }
+  useEffect(() => {
+    renderProductList();
+    dispatch(fetchProducts());
+  }, [selectProductList]);
 
-    // const inputHandler = (event) => {
-    //     setNewTodo(event.target.value)
-    // }
+  return (
+    <div className=" h-screen flex flex-col gap-2 mx-auto bg-light p-10">
+      <div>
+        <h1 className="text-2xl font-bold bg-red">Product Home</h1>
+      </div>
 
-    useEffect(() => {
-        dispatch(fetchProducts())
-    }, [])
+      {/* cards & pagination */}
+      <div className="flex flex-col">
+        
+        <div
+          className="
 
-    return (
-        <div className=" h-screen flex flex-col gap-2 mx-auto bg-light p-10">
-
-            <div>
-            <h1 className="text-2xl font-bold bg-red">Product Home</h1>
-            {/* <input type="text" onChange={inputHandler} />
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={addTodo}>Add</button> */}
-            </div>
-
-            <div className="
             grid grid-cols-3 gap-3
             bg-dark
             p-5 h-full w-full
             items-center
             ">
-            {renderProductList()}
-            </div>
-
+          {renderProductList()}
         </div>
-    )
+        
+        <div>
+          <Pagination />
+        </div>
+      
+      </div>
+    </div>
+  );
 }
 
-export default ProductHome
+export default ProductHome;
+

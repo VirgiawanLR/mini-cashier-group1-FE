@@ -8,21 +8,14 @@ function Sidebar() {
       className="
 flex
 
-       ">
+       "
+    >
+      <div className="bg-primary px-8 w-full h-screen">
         <div
-        className="
-        bg-primary
-px-8
-w-full
-h-screen
-        ">
-            
-       
-      <div
-        onClick={() => {
-          navigate("/");
-        }}
-        className="
+          onClick={() => {
+            navigate("/");
+          }}
+          className="
                 font-semibold 
                 text-5xl 
                 tracking-tightest
@@ -32,73 +25,68 @@ h-screen
                 py-12
                 text-center
                 "
-      >
-        tokoku
-      </div>
+        >
+          tokoku
+        </div>
+        <div
+          className="text-white font-regular 
+          text-center py-10"
+        >
+          <p>Hello,</p>
+          <p>username</p>
+        </div>
 
-      <div
-        className="
-text-white
-font-regular
-text-center
-py-10
-"
-      >
-        <p>Hello,</p>
-        <p>username</p>
-      </div>
-
-      <div className="grid text-white font-extrabold gap-5 py-8 px-5 justify-items-start">
-        <button
-        className="
+        <div className="grid text-white font-extrabold gap-5 py-8 px-5 justify-items-start">
+          <button
+            className="
         hover:text-light
         "
-          onClick={() => {
-            navigate("/home");
-          }}
-        >
-          Home
-        </button>
-        <button
-         className="
+            onClick={() => {
+              navigate("/home");
+            }}
+          >
+            Home
+          </button>
+          <button
+            className="
          hover:text-light
          "
-          onClick={() => {
-            navigate("/products");
-          }}
-        >
-          Products
-        </button>
-        <button
-         className="
+            onClick={() => {
+              navigate("/products");
+            }}
+          >
+            Products
+          </button>
+          <button
+            className="
          hover:text-light
          "
-          onClick={() => {
-            navigate("/categories");
-          }}
-        >
-          Categories
-        </button>
-        <button
-         className="
+            onClick={() => {
+              navigate("/categories");
+            }}
+          >
+            Categories
+          </button>
+          <button
+            className="
          hover:text-light
          "
-          onClick={() => {
-            navigate("/transactions");
-          }}
-        >
-          Transactions
-        </button>
-      </div>
+            onClick={() => {
+              navigate("/transactions");
+            }}
+          >
+            Transactions
+          </button>
+        </div>
 
-      <div
-      className="
+        <div
+          className="
       pt-20 pb-6
       flex flex-col items-center
       "
-      >
-        <button
-          className="
+        >
+          <button
+            className="
     bg-secondary
     text-white font-bold
     rounded-full
@@ -108,12 +96,11 @@ py-10
     hover:scale-105
     transition ease-in-out delay-50
     "
-        >
-          LOGOUT
-        </button>
+          >
+            LOGOUT
+          </button>
+        </div>
       </div>
-    </div>
-
     </div>
   );
 }

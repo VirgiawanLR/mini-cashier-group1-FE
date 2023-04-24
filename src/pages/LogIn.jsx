@@ -25,7 +25,7 @@ function LogIn() {
     };
     let response = await dispatch(userLogin(dataToSend));
     if (response.isSuccess) {
-      navigate("/");
+      navigate("/home");
     }
     setLoginResponse(response);
     loginBtn.disabled = false;

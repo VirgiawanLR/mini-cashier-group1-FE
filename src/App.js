@@ -4,8 +4,6 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import Products from "./components/products/ProductHome";
 
-import Home from "./pages/Home";
-import Products from "./components/products/ProductHome";
 import Verification from "./pages/Verification";
 import LogIn from "./pages/LogIn";
 import FrontPage from "./pages/FrontPage";

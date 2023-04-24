@@ -6,6 +6,7 @@ import axios from "axios";
 export const productSlice = createSlice({
   name: "product",
   initialState: {
+
     allProductList: [
       // dummy data please erase when finalized
       // { productName: "Apple", productPrice: "5000", id: 1 },
@@ -18,6 +19,7 @@ export const productSlice = createSlice({
       // { productName: "Longan", productPrice: "10000", id: 8 },
       // { productName: "Lychee", productPrice: "3000", id: 9 },
     ],
+
     selectProductList: [],
     pageData: {
       totalCount: 0,
@@ -72,6 +74,7 @@ export const productSlice = createSlice({
       state.pageData.maxPage = Math.ceil(
         state.pageData.totalCount / state.pageData.itemsPerPage
       );
+
     },
   },
 });
@@ -98,5 +101,6 @@ export function getProducts() {
 export function fetchProducts() {
   return async (dispatch) => {
     dispatch(setSelectProductList());
+
   };
 }

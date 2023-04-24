@@ -34,10 +34,71 @@ export function postNewUserData(data) {
     try {
       let response = await axios.post(`${userAPI}/register`, data);
       dispatch(setResponse(response.data));
-      console.log(response);
     } catch (error) {
-      console.log(error);
       dispatch(setResponse(error.response.data));
+    }
+  };
+}
+
+export function newUserVerification(token) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.patch(
+        `${userAPI}/verify-account`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  };
+}
+
+export function userLogin(data) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.post(`${userAPI}/login`, data);
+      const { token, user } = response.data.data;
+      localStorage.setItem("user_token", token);
+      dispatch(
+        setLoggedInUser({ ...user, isSuccess: response.data.isSuccess })
+      );
+      return {
+        message: response.data.message,
+        isSuccess: response.data.isSuccess,
+      };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function keepLogIn(token) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.post(
+        `${userAPI}/keep-login`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch(
+        setLoggedInUser({
+          ...response.data.data,
+          isSuccess: response.data.isSuccess,
+        })
+      );
+    } catch (error) {
+      console.log(error.response);
     }
   };
 }

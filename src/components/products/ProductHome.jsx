@@ -39,6 +39,7 @@ function ProductHome() {
         
         <div
           className="
+
             grid grid-cols-3 gap-3
             bg-dark
             p-5 h-full w-full
@@ -57,3 +58,4 @@ function ProductHome() {
 }
 
 export default ProductHome;
+

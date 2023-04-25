@@ -82,7 +82,7 @@ function LogIn() {
                 {loginResponse.message ? (
                   <>
                     {loginResponse.isSuccess ? null : (
-                      <p className="font-bold text-red-600 text-sm top-5">
+                      <p className="font-bold text-red text-sm top-5">
                         {loginResponse.message}
                       </p>
                     )}

@@ -22,10 +22,20 @@ export const userSlice = createSlice({
     setResponse: (state, action) => {
       state.backEndResponse = action.payload;
     },
+    setResetLoggedUser: (state) => {
+      state.loggedInUser = {
+        userName: "",
+        email: "",
+        phoneNumber: "",
+        user_ID: 0,
+        isSuccess: false,
+      };
+    },
   },
 });
 
-export const { setLoggedInUser, setResponse } = userSlice.actions;
+export const { setLoggedInUser, setResponse, setResetLoggedUser } =
+  userSlice.actions;
 
 export default userSlice.reducer;
 

@@ -23,11 +23,11 @@ function CustomCheckbox({ ...props }) {
           py-20 px-20"
           >
             <span
-              className="text-gray-800 font-bold text-xl
+              className="text-gray-800 font-bold text-3xl
               absolute right-4 top-4 hover:cursor-pointer"
               onClick={buttonHandler}
             >
-              x
+              <i class="uil uil-times-circle"></i>
             </span>
             <div className="max-w-lg">
               <TermsAndCondition />

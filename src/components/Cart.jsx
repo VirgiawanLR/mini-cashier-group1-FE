@@ -1,23 +1,22 @@
-import React from 'react'
-import { deleteCart } from '../features/cart/cartSlice'
-import { useDispatch } from 'react-redux'
+import React from "react";
+import { deleteCart } from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 function Cart(props) {
+  const { item } = props;
+  const dispatch = useDispatch();
 
-    const { item } = props
-    const dispatch = useDispatch()
-
-    return (
-<div
-className='
+  return (
+    <div
+      className="
 bg-white
 w-full
 h-screen
-'
->
-    CART
-</div>
-    )
+"
+    >
+      CART
+    </div>
+  );
 }
 
-export default Cart
+export default Cart;

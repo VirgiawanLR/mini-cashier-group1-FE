@@ -62,7 +62,7 @@ function CustomCheckbox({ ...props }) {
         </div>
       </div>
       {meta.touched && meta.error && (
-        <div className=" text-red-600 text-xs absolute font-semibold block">
+        <div className=" text-red text-xs absolute font-semibold block">
           {meta.error}
         </div>
       )}

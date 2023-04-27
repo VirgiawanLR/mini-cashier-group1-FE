@@ -97,7 +97,7 @@ function Cart() {
           </div>
         </div>
       ) : null}
-      <div className="px-4 py-8 flex flex-col gap-4">
+      <div className="px-4 pt-8 flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <div>
             <i
@@ -125,12 +125,12 @@ function Cart() {
         </div>
         {cart.length > 0 ? (
           <>
-            <div className="bg-light text-dark rounded-3xl my-8">
+            <div className="bg-lighter text-dark rounded-3xl my-8">
               <div className="flex flex-col gap-4 pt-8 px-4 pb-16">
                 {renderCart()}
               </div>
             </div>
-            <div className="bg-light text-dark rounded-3xl mt-0 mb-4">
+            <div className="bg-lighter text-dark rounded-3xl mt-0 mb-4">
               <div className="flex flex-col py-8 px-8">
                 <h3 className="text-base font-medium">TOTAL</h3>
                 <h1 className="text-xl font-bold">{totalPrice()}</h1>
@@ -145,7 +145,7 @@ function Cart() {
               rounded-full
               py-2 px-10
               w-3/4 mx-auto
-              bottom-0 mb-16
+              bottom-0 mb-8
               shadow-lg
               hover:scale-105
               transition ease-in-out delay-50

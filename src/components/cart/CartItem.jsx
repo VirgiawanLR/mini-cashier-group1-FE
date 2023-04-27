@@ -30,7 +30,7 @@ function CartItem(props) {
 
   return (
     <div className="">
-      <div className="flex items-center px-4 gap-12">
+      {/* <div className="flex items-center px-4 gap-12">
         <div
           className="flex items-center justify-center text-lg
           gap-2 font-semibold"
@@ -57,6 +57,34 @@ function CartItem(props) {
               currency: "IDR",
             })}
           </p>
+        </div>
+      </div> */}
+      <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-3 place-items-center">
+          <div
+            className="flex items-center justify-center rounded-full
+             bg-red h-4 w-4 text-white"
+          >
+            <button onClick={substractBtnHandler}>-</button>
+          </div>
+          <h2 className="font-semibold">{qty}x</h2>
+          <div
+            className="flex items-center justify-center rounded-full
+             bg-secondary h-4 w-4 text-white"
+          >
+            <button onClick={addBtnHandler}>+</button>
+          </div>
+        </div>
+        <div>
+          <div className="text-sm flex flex-col">
+            <h2 className="font-semibold">{product_name}</h2>
+            <p className="text-xs">
+              {(product_price * qty).toLocaleString("id-ID", {
+                style: "currency",
+                currency: "IDR",
+              })}
+            </p>
+          </div>
         </div>
       </div>
     </div>

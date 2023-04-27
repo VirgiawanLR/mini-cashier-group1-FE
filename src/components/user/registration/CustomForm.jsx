@@ -17,9 +17,9 @@ function CustomForm({ label, ...props }) {
           {...props}
           className={
             meta.touched && meta.error
-              ? " placeholder:text-sm text-sm placeholder-red-400 bg-red-50 border-2" +
-                " border-red-500 text-red-900 h-10 my-1 tracking-[0.13rem] shadow-dark" +
-                " sm:text-sm rounded-full shadow-md focus:ring-red-600 focus:border-red-600 block w-full" +
+              ? " placeholder:text-sm text-sm placeholder-red bg-gray-100 border-2" +
+                " border-red text-red h-10 my-1 tracking-[0.13rem] shadow-dark" +
+                " sm:text-sm rounded-full shadow-md focus:ring-red focus:border-red block w-full" +
                 " px-5 placeholder:tracking-[0.13rem] tracking-[0.13rem]"
               : " placeholder:text-sm text-sm bg-gray-50 border border-gray-300 text-dark" +
                 " sm:text-sm rounded-full shadow-md h-10 my-1 tracking-[0.13rem] shadow-dark" +
@@ -29,7 +29,7 @@ function CustomForm({ label, ...props }) {
         />
       </>
       {meta.touched && meta.error && (
-        <div className="absolute tracking-wider text-red-600 text-xs left-5 top-11 pt-1 font-normal">
+        <div className="absolute tracking-wider text-red text-xs left-5 top-11 pt-1 font-normal">
           {meta.error}
         </div>
       )}

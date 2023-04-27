@@ -21,11 +21,13 @@ function ProductHome() {
 
   useEffect(() => {
     dispatch(getProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     renderProductList();
     dispatch(fetchProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectProductList]);
 
   return (
@@ -36,7 +38,6 @@ function ProductHome() {
 
       {/* cards & pagination */}
       <div className="flex flex-col">
-        
         <div
           className="
 
@@ -44,18 +45,17 @@ function ProductHome() {
             bg-dark
             p-5 h-full w-full
             items-center
-            ">
+            "
+        >
           {renderProductList()}
         </div>
-        
+
         <div>
           <Pagination />
         </div>
-      
       </div>
     </div>
   );
 }
 
 export default ProductHome;
-

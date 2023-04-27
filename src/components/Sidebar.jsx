@@ -1,7 +1,16 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setResetLoggedUser } from "../features/users/userSlice";
 
 function Sidebar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutBtnHandler = async () => {
+    localStorage.removeItem("user_token");
+    dispatch(setResetLoggedUser());
+    navigate("/login");
+  };
 
   return (
     <div
@@ -86,6 +95,9 @@ flex
       "
         >
           <button
+            onClick={() => {
+              logoutBtnHandler();
+            }}
             className="
     bg-secondary
     text-white font-bold

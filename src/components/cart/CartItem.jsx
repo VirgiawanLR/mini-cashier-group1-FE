@@ -15,7 +15,6 @@ function CartItem(props) {
     let itmIndex = cartContent.findIndex(
       (product) => product.product_ID === product_ID
     );
-    document.getElementById(`subtract-btn-${product_ID}`).disabled = qty < 1;
     dispatch(addQtyItem(itmIndex));
   };
 
@@ -23,7 +22,6 @@ function CartItem(props) {
     let itmIndex = cartContent.findIndex(
       (product) => product.product_ID === product_ID
     );
-    document.getElementById(`subtract-btn-${product_ID}`).disabled = qty < 2;
     dispatch(subtractQtyItem(itmIndex));
     if (qty < 2) {
       dispatch(removeItem(itmIndex));
@@ -41,12 +39,7 @@ function CartItem(props) {
             className="flex items-center justify-center rounded-full
              bg-red h-4 w-4 text-white"
           >
-            <button
-              id={`subtract-btn-${product_ID}`}
-              onClick={substractBtnHandler}
-            >
-              -
-            </button>
+            <button onClick={substractBtnHandler}>-</button>
           </div>
           <h2>{qty}x</h2>
           <div

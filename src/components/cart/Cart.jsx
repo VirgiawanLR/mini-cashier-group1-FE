@@ -24,7 +24,7 @@ function Cart() {
   };
 
   return (
-    <section className="bg-white h-screen">
+    <section className="bg-white h-screen overflow-y-auto">
       <div className="px-4 py-8 flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <div>

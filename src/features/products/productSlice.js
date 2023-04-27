@@ -6,7 +6,6 @@ import axios from "axios";
 export const productSlice = createSlice({
   name: "product",
   initialState: {
-
     allProductList: [
       // dummy data please erase when finalized
       // { productName: "Apple", productPrice: "5000", id: 1 },
@@ -74,7 +73,6 @@ export const productSlice = createSlice({
       state.pageData.maxPage = Math.ceil(
         state.pageData.totalCount / state.pageData.itemsPerPage
       );
-
     },
   },
 });
@@ -101,6 +99,15 @@ export function getProducts() {
 export function fetchProducts() {
   return async (dispatch) => {
     dispatch(setSelectProductList());
+  };
+}
 
+export function createNewProduct(data) {
+  return async () => {
+    let response = await axios.post(
+      "http://localhost:8000/products/create",
+      data
+    );
+    console.log(response);
   };
 }

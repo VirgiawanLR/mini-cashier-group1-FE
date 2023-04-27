@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProdProdsCard from "./ProdProdsCard";
 import SearchBar from "../SearchBar";
@@ -7,6 +7,9 @@ import {
   fetchProducts,
 } from "../../features/products/productSlice";
 import Pagination from "../Pagination";
+import PopUpNewProduct from "./PopUpNewProduct";
+
+
 
 function ProductProducts() {
   const dispatch = useDispatch();
@@ -29,7 +32,36 @@ function ProductProducts() {
     dispatch(fetchProducts());
   }, [selectProductList]);
 
+  const [popup, setPopup] = useState(false)
+
+  const togglePopup = () => {
+      setPopup(!popup)
+  }
+
   return (
+
+<div>
+{/* popup - create */}
+    {popup && (
+        <div
+          className="fixed top-0 left-0 right-0 z-50 
+        w-full p-4 md:inset-0 max-h-full
+        modal-container flex justify-center items-center"
+        >
+          <div
+            className="relative mx-auto overflow-x overflow-y-auto bg-white h-5/6 w-fit rounded-xl
+          py-20 px-20"
+          >
+            
+            <div className="max-w-lg">
+            <PopUpNewProduct togglePopup={togglePopup}/>
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
     <div className=" h-screen flex flex-col gap-2 mx-auto bg-light p-10">
       <div>
         <h1 className="text-2xl font-bold bg-red">Products</h1>
@@ -40,15 +72,16 @@ function ProductProducts() {
 <div className="flex justify-between">
     <div>
     <button
-            className="
+    className="
     bg-secondary
     text-white font-bold
     rounded-full
-    py-2 px-5
+    py-2 px-10
     shadow-lg
     hover:scale-105
     transition ease-in-out delay-50
     "
+    onClick={togglePopup}
           >
             CREATE
           </button>
@@ -88,6 +121,8 @@ function ProductProducts() {
         </div>
       
       </div>
+    </div>
+
     </div>
   );
 }

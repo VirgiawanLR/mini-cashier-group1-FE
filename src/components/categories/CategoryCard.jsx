@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProdProdsCard(props) {
+function CategoryCard(props) {
   const { product } = props;
 
   return (
@@ -80,4 +80,4 @@ function ProdProdsCard(props) {
   );
 }
 
-export default ProdProdsCard;
+export default CategoryCard;

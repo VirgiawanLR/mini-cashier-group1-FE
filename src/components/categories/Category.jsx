@@ -7,7 +7,7 @@ import {
 } from "../../features/products/productSlice";
 import Pagination from "../Pagination";
 
-function ProductHome() {
+function Category() {
   const dispatch = useDispatch();
   const selectProductList = useSelector(
     (state) => state.product.selectProductList
@@ -36,7 +36,6 @@ function ProductHome() {
 
       {/* cards & pagination */}
       <div className="flex flex-col">
-        
         <div
           className="
 
@@ -44,18 +43,17 @@ function ProductHome() {
             bg-dark
             p-5 h-full w-full
             items-center
-            ">
+            "
+        >
           {renderProductList()}
         </div>
-        
+
         <div>
           <Pagination />
         </div>
-      
       </div>
     </div>
   );
 }
 
-export default ProductHome;
-
+export default Category;

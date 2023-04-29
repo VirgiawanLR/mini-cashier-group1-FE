@@ -1,27 +1,27 @@
-import { render } from "@testing-library/react"
-import '../index.css'
-import Cart from "../components/cart/Cart"
-import Sidebar from "../components/Sidebar"
-import ProductHome from "../components/products/ProductHome"
+import { render } from "@testing-library/react";
+import "../index.css";
+import Cart from "../components/cart/Cart";
+import Sidebar from "../components/Sidebar";
+import ProductHome from "../components/products/home/ProductHome";
 
 function Home() {
-
-    return (
+  return (
     <div
-    className="
+      className="
  flex
-    ">
-        <div className="w-1/6">
-            <Sidebar />
-        </div>
-        <div className="w-7/12">
-            <ProductHome />
-        </div>
-        <div className="w-1/4">
+    "
+    >
+      <div className="w-1/6">
+        <Sidebar />
+      </div>
+      <div className="w-7/12">
+        <ProductHome />
+      </div>
+      <div className="w-1/4">
         <Cart />
-        </div>
+      </div>
     </div>
-    )
+  );
 }
 
-export default Home
+export default Home;

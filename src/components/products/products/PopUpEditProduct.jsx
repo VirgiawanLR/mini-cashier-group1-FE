@@ -2,16 +2,16 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import ProductForm from "./ProductForm";
+import ProductEditForm from "./ProductEditForm";
 import ProductDropdown from "./ProductDropdown";
-import { createNewProduct } from "../../features/products/productSlice";
+import { editProduct } from "../../../features/products/productSlice";
 
-function PopUpNewProduct(props) {
+function PopUpEditProduct(props) {
   const dispatch = useDispatch();
-  const { togglePopup } = props;
+  const { togglePopupEdit, product } = props;
   const categoryList = useSelector((state) => state.product.categoryList);
 
-  const createProductSchema = Yup.object().shape({
+  const editProductSchema = Yup.object().shape({
     productName: Yup.string().required("must not be blank"),
     productCategory: Yup.string().required("must not be blank"),
     productPrice: Yup.number()
@@ -30,7 +30,7 @@ function PopUpNewProduct(props) {
 
   const onSubmit = async (values, action) => {
     // console.log(values);
-    let createHandler = document.querySelector("#createProduct");
+    let createHandler = document.querySelector("#editProduct");
     createHandler.disabled = true;
     const {
       productName,
@@ -38,15 +38,17 @@ function PopUpNewProduct(props) {
       productPrice,
       productQuantity,
       productDesc,
+      productID,
     } = values;
-    let newProductData = {
+    let editedProductData = {
       product_name: productName,
       category_ID: parseInt(productCategory),
       product_price: parseInt(productPrice),
       product_quantity: parseInt(productQuantity),
       product_description: productDesc,
+      product_ID: productID,
     };
-    await dispatch(createNewProduct(newProductData));
+    await dispatch(editProduct(editedProductData));
     createHandler.disabled = false;
   };
 
@@ -61,7 +63,7 @@ function PopUpNewProduct(props) {
           font-semibold text-xl text-dark
           "
           >
-            Create new product
+            Edit product
           </p>
 
           <button
@@ -74,7 +76,7 @@ function PopUpNewProduct(props) {
           hover:scale-105
           transition ease-in-out delay-50
           "
-            onClick={togglePopup}
+            onClick={togglePopupEdit}
           >
             x
           </button>
@@ -83,13 +85,14 @@ function PopUpNewProduct(props) {
         <div>
           <Formik
             initialValues={{
-              productName: "",
-              productCategory: "",
-              productPrice: "",
-              productQuantity: "",
-              productDesc: "",
+              productName: product.product_name,
+              productCategory: product.product_category,
+              productPrice: product.product_price,
+              productQuantity: product.product_quantity,
+              productDesc: product.product_description,
+              productID: product.product_ID,
             }}
-            validationSchema={createProductSchema}
+            validationSchema={editProductSchema}
             onSubmit={onSubmit}
           >
             {(props) => {
@@ -99,7 +102,7 @@ function PopUpNewProduct(props) {
                     <p className="pl-2 text-sm text-dark tracking-widest">
                       Product Name
                     </p>
-                    <ProductForm
+                    <ProductEditForm
                       name="productName"
                       type="text"
                       id="productName"
@@ -107,7 +110,9 @@ function PopUpNewProduct(props) {
                     />
                   </div>
                   <div>
-                    <p>Product Category</p>
+                    <p className="pl-2 text-sm text-dark tracking-widest">
+                      Product Category
+                    </p>
                     <ProductDropdown
                       name="productCategory"
                       type="text"
@@ -117,8 +122,10 @@ function PopUpNewProduct(props) {
                     />
                   </div>
                   <div>
-                    <p>Product Price</p>
-                    <ProductForm
+                    <p className="pl-2 text-sm text-dark tracking-widest">
+                      Product Price
+                    </p>
+                    <ProductEditForm
                       name="productPrice"
                       type="text"
                       id="productPrice"
@@ -126,8 +133,10 @@ function PopUpNewProduct(props) {
                     />
                   </div>
                   <div>
-                    <p>Product Quantity</p>
-                    <ProductForm
+                    <p className="pl-2 text-sm text-dark tracking-widest">
+                      Product Quantity
+                    </p>
+                    <ProductEditForm
                       name="productQuantity"
                       type="text"
                       id="productQuantity"
@@ -135,8 +144,10 @@ function PopUpNewProduct(props) {
                     />
                   </div>
                   <div>
-                    <p>Description</p>
-                    <ProductForm
+                    <p className="pl-2 text-sm text-dark tracking-widest">
+                      Description
+                    </p>
+                    <ProductEditForm
                       name="productDesc"
                       type="text"
                       id="productDesc"
@@ -146,7 +157,7 @@ function PopUpNewProduct(props) {
 
                   <button
                     type="submit"
-                    id="createProduct"
+                    id="editProduct"
                     className="w-full mx-auto shadow-dark 
                           shadow-lg text-white 
                           bg-secondary hover:bg-tertiary
@@ -155,12 +166,8 @@ function PopUpNewProduct(props) {
                           text-center tracking-[0.18rem]
                           transition ease-in-out duration-200
                            disabled:hover:bg-secondary disabled:hover:cursor-wait"
-                    //    onClick={() => {
-                    //     togglePopup();
-
-                    //   }}
                   >
-                    CREATE PRODUCT
+                    EDIT PRODUCT
                   </button>
                 </Form>
               );
@@ -172,7 +179,7 @@ function PopUpNewProduct(props) {
           <button
             className="bg-tertiary"
             onClick={() => {
-              togglePopup();
+              togglePopupCreate();
               alert("New product has been created");
             }}
           >
@@ -186,4 +193,4 @@ function PopUpNewProduct(props) {
   );
 }
 
-export default PopUpNewProduct;
+export default PopUpEditProduct;

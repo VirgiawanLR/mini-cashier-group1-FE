@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// const userAPI = "http://localhost:8000/product";
+const userAPI = "http://localhost:8000/products";
 
 export const productSlice = createSlice({
   name: "product",
@@ -46,14 +46,18 @@ export const productSlice = createSlice({
       });
     },
     setSelectProductList: (state) => {
-      state.selectProductList = state.allProductList.filter((product) => {
-        if (
-          product.product_ID >= state.pageData.indexStart &&
-          product.product_ID <= state.pageData.indexEnd
-        ) {
-          return true;
-        }
-      });
+      state.selectProductList = state.allProductList.slice(
+        state.pageData.indexStart,
+        state.pageData.indexEnd
+      );
+      // state.selectProductList = state.allProductList.filter((product) => {
+      //   if (
+      //     product.product_ID >= state.pageData.indexStart &&
+      //     product.product_ID <= state.pageData.indexEnd
+      //   ) {
+      //     return true;
+      //   }
+      // });
     },
     setCategoryList: (state, action) => {
       state.categoryList = action.payload;
@@ -96,8 +100,9 @@ export default productSlice.reducer;
 
 export function getProducts() {
   return async (dispatch) => {
-    let response = await axios.get("http://localhost:8000/products");
+    let response = await axios.get(userAPI);
     dispatch(setAllProductList(response.data.products));
+    dispatch(setSelectProductList());
     dispatch(setCategoryList(response.data.categories));
     dispatch(setTotalCount(response.data.count));
     dispatch(setMaxPage());
@@ -117,6 +122,21 @@ export function createNewProduct(data) {
       "http://localhost:8000/products/create",
       data
     );
+    console.log(response);
+  };
+}
+
+export function deleteProduct(id) {
+  return async (dispatch) => {
+    let response = await axios.delete(`${userAPI}/delete/${id}`);
+    dispatch(getProducts());
+  };
+}
+
+export function editProduct(data) {
+  return async () => {
+    // console.log(data);
+    let response = await axios.put(`${userAPI}/edit/${data.product_ID}`, data);
     console.log(response);
   };
 }

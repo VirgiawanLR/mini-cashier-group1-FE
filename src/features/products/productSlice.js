@@ -20,6 +20,9 @@ export const productSlice = createSlice({
     ],
 
     selectProductList: [],
+
+    categoryList: [],
+
     pageData: {
       totalCount: 0,
       currentPage: 1,
@@ -52,6 +55,9 @@ export const productSlice = createSlice({
         }
       });
     },
+    setCategoryList: (state, action) => {
+      state.categoryList = action.payload;
+    },
     setTotalCount: (state, action) => {
       state.pageData.totalCount = action.payload;
     },
@@ -80,6 +86,7 @@ export const productSlice = createSlice({
 export const {
   setAllProductList,
   setSelectProductList,
+  setCategoryList,
   setTotalCount,
   nextPage,
   prevPage,
@@ -89,8 +96,9 @@ export default productSlice.reducer;
 
 export function getProducts() {
   return async (dispatch) => {
-    let response = await axios.get("http://localhost:8000/home");
+    let response = await axios.get("http://localhost:8000/products");
     dispatch(setAllProductList(response.data.products));
+    dispatch(setCategoryList(response.data.categories));
     dispatch(setTotalCount(response.data.count));
     dispatch(setMaxPage());
   };
@@ -104,6 +112,7 @@ export function fetchProducts() {
 
 export function createNewProduct(data) {
   return async () => {
+    // console.log(data);
     let response = await axios.post(
       "http://localhost:8000/products/create",
       data

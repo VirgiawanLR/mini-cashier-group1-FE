@@ -3,10 +3,13 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import ProductForm from "./ProductForm";
+import ProductDropdown from "./ProductDropdown";
 import { createNewProduct } from "../../features/products/productSlice";
+
 function PopUpNewProduct(props) {
   const dispatch = useDispatch();
   const { togglePopup } = props;
+  const categoryList = useSelector((state) => state.product.categoryList);
 
   const createProductSchema = Yup.object().shape({
     productName: Yup.string().required("must not be blank"),
@@ -26,6 +29,7 @@ function PopUpNewProduct(props) {
   });
 
   const onSubmit = async (values, action) => {
+    // console.log(values);
     let createHandler = document.querySelector("#createProduct");
     createHandler.disabled = true;
     const {
@@ -37,9 +41,9 @@ function PopUpNewProduct(props) {
     } = values;
     let newProductData = {
       product_name: productName,
-      productCategory,
-      product_price: productPrice,
-      product_quantity: productQuantity,
+      category_ID: parseInt(productCategory),
+      product_price: parseInt(productPrice),
+      product_quantity: parseInt(productQuantity),
       product_description: productDesc,
     };
     await dispatch(createNewProduct(newProductData));
@@ -52,7 +56,6 @@ function PopUpNewProduct(props) {
       <div className="relative">
         {/* title & close button */}
         <div className="flex gap-2">
-
           <p
             className="
           font-semibold text-xl text-dark
@@ -105,11 +108,12 @@ function PopUpNewProduct(props) {
                   </div>
                   <div>
                     <p>Product Category</p>
-                    <ProductForm
+                    <ProductDropdown
                       name="productCategory"
                       type="text"
                       id="productCategory"
                       placeholder="category"
+                      options={categoryList}
                     />
                   </div>
                   <div>
@@ -151,10 +155,10 @@ function PopUpNewProduct(props) {
                           text-center tracking-[0.18rem]
                           transition ease-in-out duration-200
                            disabled:hover:bg-secondary disabled:hover:cursor-wait"
-                        //    onClick={() => {
-                        //     togglePopup();
-                            
-                        //   }}
+                    //    onClick={() => {
+                    //     togglePopup();
+
+                    //   }}
                   >
                     CREATE PRODUCT
                   </button>

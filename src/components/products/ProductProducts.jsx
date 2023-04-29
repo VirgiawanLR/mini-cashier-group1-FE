@@ -49,8 +49,7 @@ function ProductProducts() {
         modal-container flex justify-center items-center"
         >
           <div
-            className="relative mx-auto overflow-x overflow-y-auto bg-white h-5/6 w-fit rounded-xl
-          py-20 px-20"
+            className="relative mx-auto overflow-x overflow-y-auto bg-white h-5/6 w-5/6 rounded-xl px-24 py-16"
           >
             
             <div className="max-w-lg">

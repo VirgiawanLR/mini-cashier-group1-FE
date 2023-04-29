@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateRows: {
+        8: "repeat(8, minmax(0, 1fr))",
+      },
       letterSpacing: {
         tightest: "-8.5%",
       },

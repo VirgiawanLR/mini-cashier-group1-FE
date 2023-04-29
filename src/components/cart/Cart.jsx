@@ -169,7 +169,7 @@ function Cart() {
         <div className="flex items-center gap-2">
           <div>
             <i
-              class="uil uil-shopping-cart-alt text-primary
+              className="uil uil-shopping-cart-alt text-primary
             text-5xl relative"
             >
               {" "}

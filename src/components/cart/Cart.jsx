@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmationPopUp from "./ConfirmationPopUp";
-import { newTransaction } from "../../features/transaction/transactionSlice";
+import {
+  getDataTransaction,
+  newTransaction,
+} from "../../features/transaction/transactionSlice";
 import { resetCart } from "../../features/cart/cartSlice";
 
 function Cart() {
@@ -106,6 +109,14 @@ function Cart() {
                     setResponseProceed({ message: null });
                     setIsModalPopUp(false);
                     dispatch(resetCart());
+                    dispatch(
+                      getDataTransaction({
+                        start: null,
+                        end: null,
+                        offset: 0 * 9,
+                        limit: 9,
+                      })
+                    );
                   }}
                   className="bg-secondary
                 text-white font-bold
@@ -169,7 +180,7 @@ function Cart() {
         <div className="flex items-center gap-2">
           <div>
             <i
-              class="uil uil-shopping-cart-alt text-primary
+              className="uil uil-shopping-cart-alt text-primary
             text-5xl relative"
             >
               {" "}

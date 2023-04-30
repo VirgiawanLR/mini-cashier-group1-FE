@@ -4,6 +4,10 @@ function SearchBar() {
 
   const [search, setSearch] = useState("");
 
+  const inputHandler = (event) => {
+    setSearch(event.target.value);
+  };
+
   //   const renderList = () => {
   //     return fruits
   //       .filter((fruit) => {
@@ -17,10 +21,6 @@ function SearchBar() {
   //         );
   //       });
   //   };
-
-  const inputHandler = (event) => {
-    setSearch(event.target.value);
-  };
 
   return (
     <div>

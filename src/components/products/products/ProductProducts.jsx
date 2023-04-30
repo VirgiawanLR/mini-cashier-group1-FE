@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProdProdsCard from "./ProdProdsCard";
 import SearchBar from "../../SearchBar";
+import CategoryDropdown from "../products/CategoryDropdown";
 import {
   getProducts,
   fetchProducts,
@@ -17,6 +18,7 @@ function ProductProducts() {
   const selectProductList = useSelector(
     (state) => state.product.selectProductList
   );
+  const categoryList = useSelector((state) => state.product.categoryList);
   const allProductList = useSelector((state) => state.product.allProductList);
 
   const renderProductList = () => {
@@ -27,9 +29,9 @@ function ProductProducts() {
 
   // useStates
   const [popupCreate, setPopupCreate] = useState(false);
-  const [toggleRenderProductList, setRenderProductList] = useState(true);
   const [toggleSortAZ, setSortAZ] = useState(false);
   const [toggleSortZA, setSortZA] = useState(false);
+  // const [search, setSearch] = useState("");
 
   // useEffects
   useEffect(() => {
@@ -58,6 +60,7 @@ function ProductProducts() {
     }
   }, [toggleSortZA]);
 
+  // useEffect pagination
   useEffect(() => {
     dispatch(fetchProducts());
     renderProductList();
@@ -69,15 +72,15 @@ function ProductProducts() {
   };
 
   const sortAZHandler = () => {
-    if (toggleSortZA == true) {
-      setSortZA(!toggleSortZA);
+    if (toggleSortZA === true) {
+      setSortZA(false);
     }
     setSortAZ(!toggleSortAZ);
   };
 
   const sortZAHandler = () => {
-    if (toggleSortAZ == true) {
-      setSortAZ(!toggleSortAZ);
+    if (toggleSortAZ === true) {
+      setSortAZ(false);
     }
     setSortZA(!toggleSortZA);
   };
@@ -105,7 +108,7 @@ function ProductProducts() {
         </div>
 
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
               <button
                 className="
@@ -124,7 +127,7 @@ function ProductProducts() {
             </div>
 
             <div>
-              <SearchBar />
+              <CategoryDropdown categoryList={categoryList} />
             </div>
             {/* button divs */}
             <div>

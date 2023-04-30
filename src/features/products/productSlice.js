@@ -36,28 +36,42 @@ export const productSlice = createSlice({
   reducers: {
     setAllProductList: (state, action) => {
       state.allProductList = action.payload;
-      state.selectProductList = state.allProductList.filter((product) => {
-        if (
-          product.product_ID >= state.pageData.indexStart &&
-          product.product_ID <= state.pageData.indexEnd
-        ) {
-          return true;
-        }
-      });
+      state.selectProductList = state.allProductList.slice(
+        state.pageData.indexStart,
+        state.pageData.indexEnd
+      );
     },
     setSelectProductList: (state) => {
       state.selectProductList = state.allProductList.slice(
         state.pageData.indexStart,
         state.pageData.indexEnd
       );
-      // state.selectProductList = state.allProductList.filter((product) => {
-      //   if (
-      //     product.product_ID >= state.pageData.indexStart &&
-      //     product.product_ID <= state.pageData.indexEnd
-      //   ) {
-      //     return true;
-      //   }
-      // });
+    },
+    setProductAZ: (state) => {
+      state.allProductList = state.allProductList.sort((a, b) => {
+        const nameA = a.product_name.toUpperCase();
+        const nameB = b.product_name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+    setProductZA: (state) => {
+      state.allProductList = state.allProductList.sort((a, b) => {
+        const nameA = a.product_name.toUpperCase();
+        const nameB = b.product_name.toUpperCase();
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        return 0;
+      });
     },
     setCategoryList: (state, action) => {
       state.categoryList = action.payload;
@@ -90,6 +104,8 @@ export const productSlice = createSlice({
 export const {
   setAllProductList,
   setSelectProductList,
+  setProductAZ,
+  setProductZA,
   setCategoryList,
   setTotalCount,
   nextPage,
@@ -111,6 +127,20 @@ export function getProducts() {
 
 export function fetchProducts() {
   return async (dispatch) => {
+    dispatch(setSelectProductList());
+  };
+}
+
+export function sortProductAZ() {
+  return async (dispatch) => {
+    dispatch(setProductAZ());
+    dispatch(setSelectProductList());
+  };
+}
+
+export function sortProductZA() {
+  return async (dispatch) => {
+    dispatch(setProductZA());
     dispatch(setSelectProductList());
   };
 }

@@ -5,11 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import ProductForm from "./ProductForm";
 import ProductDropdown from "./ProductDropdown";
-import {
-  createNewProduct,
-  fetchProducts,
-  getProducts,
-} from "../../../features/products/productSlice";
+import { createNewProduct } from "../../../features/products/productSlice";
 
 function PopUpNewProduct(props) {
   const dispatch = useDispatch();

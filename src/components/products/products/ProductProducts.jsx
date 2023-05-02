@@ -72,16 +72,10 @@ function ProductProducts() {
   };
 
   const sortAZHandler = () => {
-    if (toggleSortZA === true) {
-      setSortZA(false);
-    }
     setSortAZ(!toggleSortAZ);
   };
 
   const sortZAHandler = () => {
-    if (toggleSortAZ === true) {
-      setSortAZ(false);
-    }
     setSortZA(!toggleSortZA);
   };
 

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { keepLogIn } from "./features/users/userSlice";
 import TransactionsPage from "./pages/TransactionsPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/transactions" element={<TransactionsPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
 
             {/* user state => not loggedin: if user access the unauthorized 
             routes, then the user

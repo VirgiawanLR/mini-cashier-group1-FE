@@ -1,6 +1,6 @@
 import React from "react";
 
-function ConfirmationPopUp(props) {
+function PopupItem(props) {
   let { product_name, product_price, qty } = props.product;
   return (
     <div className="flex justify-between text-sm">
@@ -24,4 +24,4 @@ function ConfirmationPopUp(props) {
   );
 }
 
-export default ConfirmationPopUp;
+export default PopupItem;

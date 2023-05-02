@@ -45,7 +45,7 @@ flex
           <p>username</p>
         </div>
 
-        <div className="grid text-white font-extrabold gap-5 py-8 px-5 justify-items-start">
+        <div className="grid text-white font-extrabold gap-5 py-4 px-5 justify-items-start">
           <button
             className="
         hover:text-light
@@ -85,6 +85,16 @@ flex
             }}
           >
             Transactions
+          </button>
+          <button
+            className="
+         hover:text-light
+         "
+            onClick={() => {
+              navigate("/analytics");
+            }}
+          >
+            Analytics
           </button>
         </div>
 

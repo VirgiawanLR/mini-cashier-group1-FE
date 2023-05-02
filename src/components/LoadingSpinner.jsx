@@ -4,7 +4,7 @@ function LoadingSpinner(props) {
   const { bg, fill, base } = props;
   return (
     <div
-      className={`h-screen bg-${bg} flex items-center justify-center`}
+      className={`h-full bg-${bg} flex items-center justify-center`}
       role="status"
     >
       <div>

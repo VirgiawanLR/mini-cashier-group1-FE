@@ -4,6 +4,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartContent: [],
+    modalPopUp: false,
   },
   reducers: {
     addItemToCart: (state, action) => {
@@ -25,6 +26,9 @@ export const cartSlice = createSlice({
         ...state.cartContent.slice(action.payload + 1),
       ];
     },
+    setModalState: (state, action) => {
+      state.modalPopUp = action.payload;
+    },
   },
 });
 
@@ -34,6 +38,7 @@ export const {
   addQtyItem,
   subtractQtyItem,
   removeItem,
+  setModalState,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

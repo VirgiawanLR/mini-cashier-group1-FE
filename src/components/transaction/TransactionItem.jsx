@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailTransaction } from "../../features/transaction/transactionSlice";
-import ConfirmationPopUp from "../cart/ConfirmationPopUp";
+import PopupItem from "../cart/PopupItem";
 
 function TransactionItem(props) {
   let { transaction_ID, transaction_totalprice, date } = props.data;
@@ -10,16 +10,15 @@ function TransactionItem(props) {
     (state) => state.transaction.singleTransaction
   );
   const dispatch = useDispatch();
-  let response;
 
   const singleTransClicked = async () => {
-    response = await dispatch(getDetailTransaction(transaction_ID));
+    await dispatch(getDetailTransaction(transaction_ID));
     setIsModalPopUp(true);
   };
 
   const renderPopUp = () => {
     return singleTransaction.itemList.map((item) => {
-      return <ConfirmationPopUp product={item} />;
+      return <PopupItem product={item} />;
     });
   };
 

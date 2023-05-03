@@ -50,6 +50,7 @@ function TransactionContent() {
   useEffect(() => {
     document.addEventListener("click", hideOnClickOutside, true);
     setIsPageLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filterBtn = () => {
@@ -85,6 +86,7 @@ function TransactionContent() {
         })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   return (
@@ -99,7 +101,7 @@ function TransactionContent() {
                 className=" row-start-2 row-span-2 flex flex-col 
              gap-1"
               >
-                <h1 className=" text-2xl font-semibold">Transactions</h1>
+                <h1 className=" text-2xl font-bold">Transactions</h1>
                 <div className="w-1/2 flex relative gap-2">
                   <input
                     className="w-1/2 rounded-lg tracking-tight text-xs px-2

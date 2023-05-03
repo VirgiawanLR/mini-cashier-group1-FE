@@ -9,6 +9,8 @@ export const transactionSlice = createSlice({
     transactionList: [],
     singleTransaction: {},
     dataAndPageCount: {},
+    totalGrossList: [],
+    totalOrderList: [],
   },
   reducers: {
     setTransactionList: (state, action) => {
@@ -20,13 +22,24 @@ export const transactionSlice = createSlice({
     setDataAndPageCount: (state, action) => {
       state.dataAndPageCount = action.payload;
     },
+    setTotalGross: (state, action) => {
+      state.totalGrossList = action.payload;
+    },
+    setTotalOrder: (state, action) => {
+      state.totalOrderList = action.payload;
+    },
   },
 });
 
 export default transactionSlice.reducer;
 
-export const { setTransactionList, setSingleTransData, setDataAndPageCount } =
-  transactionSlice.actions;
+export const {
+  setTransactionList,
+  setSingleTransData,
+  setDataAndPageCount,
+  setTotalGross,
+  setTotalOrder,
+} = transactionSlice.actions;
 
 export function newTransaction({ transaction_list, transaction_price }) {
   return async (dispatch) => {
@@ -94,6 +107,54 @@ export function getDetailTransaction(transaction_ID) {
       );
       const { message, isSuccess, data } = response.data;
       dispatch(setSingleTransData(data));
+      return { message, isSuccess };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function getGrossIncome({ start, end }) {
+  return async (dispatch) => {
+    let endPoint = `${transAPI}/gross/daily`;
+    if (start && end) {
+      start = start.toISOString().split("T")[0] + " 00:00:00";
+      end = end.toISOString().split("T")[0] + " 23:59:59";
+      endPoint += `?start=${start}&end=${end}`;
+    }
+    console.log(endPoint);
+    try {
+      let response = await axios.get(endPoint, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+        },
+      });
+      const { message, isSuccess, data } = response.data;
+      dispatch(setTotalGross(data));
+      return { message, isSuccess };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function getTotalOrder({ start, end }) {
+  return async (dispatch) => {
+    let endPoint = `${transAPI}/total-order/daily`;
+    if (start && end) {
+      start = start.toISOString().split("T")[0] + " 00:00:00";
+      end = end.toISOString().split("T")[0] + " 23:59:59";
+      endPoint += `?start=${start}&end=${end}`;
+    }
+    console.log(endPoint);
+    try {
+      let response = await axios.get(endPoint, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+        },
+      });
+      const { message, isSuccess, data } = response.data;
+      dispatch(setTotalOrder(data));
       return { message, isSuccess };
     } catch (error) {
       return { ...error.response.data };

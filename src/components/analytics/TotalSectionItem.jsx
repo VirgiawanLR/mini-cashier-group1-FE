@@ -12,7 +12,7 @@ function TotalSectionItem(props) {
               style: "currency",
               currency: "IDR",
             })
-          : props.item.total_transaction}
+          : `${props.item.total_transaction} order(s)`}
       </h1>
     </div>
   );

@@ -29,7 +29,10 @@ function TransactionItem(props) {
           className=" fixed h-screen w-screen top-0 left-0
         modal-container z-50 flex justify-center items-center text-dark"
         >
-          <div className="bg-white px-12 py-12 rounded-2xl w-1/2 relative">
+          <div
+            className="bg-white px-12 py-12 
+          rounded-2xl w-1/2 relative max-h-screen"
+          >
             <i
               className="uil uil-times-circle absolute top-2 
               right-4 text-lg hover:cursor-pointer"
@@ -46,8 +49,13 @@ function TransactionItem(props) {
                 {singleTransaction.date[0]} {singleTransaction.date[1]}
               </p>
             </div>
-            <div className=" flex flex-col gap-5 mt-10">{renderPopUp()}</div>
-            <div className="flex justify-between mt-20">
+            <div
+              className=" flex flex-col gap-5 mt-10
+            max-h-80 overflow-y-auto pr-4"
+            >
+              {renderPopUp()}
+            </div>
+            <div className="flex justify-between mt-8">
               <div></div>
               <div className="flex flex-col gap-1">
                 <h3 className=" text-sm font-semibold text-right">TOTAL</h3>

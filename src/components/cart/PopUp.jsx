@@ -60,7 +60,10 @@ function PopUp() {
         className=" fixed h-screen w-screen top-0 left-0
           modal-container z-50 flex justify-center items-center text-dark"
       >
-        <div className="bg-white px-12 py-12  rounded-2xl w-1/2 relative">
+        <div
+          className="bg-white px-12 py-12 max-h-screen
+          rounded-2xl w-1/2 relative"
+        >
           {responseProceed.message ? (
             <div className="flex flex-col">
               {responseProceed.isSuccess ? (
@@ -138,17 +141,22 @@ function PopUp() {
                   {new Date(Date.now()).toLocaleDateString()}
                 </p>
               </div>
-              <div className=" flex flex-col gap-5 mt-10">{renderPopUp()}</div>
-              <div className="flex justify-between mt-20">
+              <div
+                className=" flex flex-col gap-5 mt-10
+              max-h-80 overflow-y-auto pr-8"
+              >
+                {renderPopUp()}
+              </div>
+              <div className="flex justify-between mt-10">
                 <button
                   id="proceed-btn"
                   className="bg-secondary
-              text-white font-bold
-              rounded-full
-              px-10
-              shadow-lg
-              hover:scale-105
-              transition ease-in-out delay-50
+                 text-white font-bold
+                 rounded-full
+                 px-10
+                 shadow-lg
+                 hover:scale-105
+                 transition ease-in-out delay-50
               "
                   onClick={proceedBtnHandler}
                 >

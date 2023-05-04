@@ -117,7 +117,7 @@ function TransactionContent() {
                   />
                   <button
                     onClick={filterBtn}
-                    className="text-white bg-dark rounded-lg
+                    className="text-white bg-secondary rounded-lg
                   text-xs px-4 py-2 scale-y-90 font-semibold tracking-wider"
                   >
                     filter
@@ -145,7 +145,7 @@ function TransactionContent() {
               </div>
               {renderTransItem()}
             </div>
-            <div className="grid grid-cols-7 text-primary">
+            <div className="grid grid-cols-7 text-dark">
               <div className=" col-start-4 col-span-1 grid grid-cols-3">
                 <button
                   disabled={currentPage === 0}

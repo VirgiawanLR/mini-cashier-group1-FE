@@ -89,8 +89,8 @@ function TotalSection(props) {
           <div className="mt-2 flex justify-between items-center">
             <h1 className="font-bold">Total {props.total}</h1>
             <input
-              className=" rounded-lg tracking-tight text-xs
-              text-center shadow-md scale-x-90 hover:cursor-pointer"
+              className=" rounded-lg tracking-tight text-xs py-1
+              text-center shadow scale-x-90 hover:cursor-pointer"
               readOnly
               value={`${format(
                 dateState[0].startDate,
@@ -114,7 +114,7 @@ function TotalSection(props) {
           </div>
           <section
             className="bg-white h-52 row-start-2 row-span-full mt-4
-             overflow-y-auto flex flex-col gap-4 text-sm"
+             overflow-y-auto flex flex-col gap-4 text-sm pr-4 py-0"
           >
             {renderItem()}
           </section>

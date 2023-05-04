@@ -72,9 +72,15 @@ function TotalSection(props) {
     if (showCalender) {
       setIsPageLoading(false);
       if (props.total === "Sales") {
-        ifSales(dateState[0].startDate, dateState[0].endDate);
+        ifSales(
+          format(dateState[0].startDate, "yyyy-MM-dd"),
+          format(dateState[0].endDate, "yyyy-MM-dd")
+        );
       } else {
-        ifOrder(dateState[0].startDate, dateState[0].endDate);
+        ifOrder(
+          format(dateState[0].startDate, "yyyy-MM-dd"),
+          format(dateState[0].endDate, "yyyy-MM-dd")
+        );
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,7 +107,7 @@ function TotalSection(props) {
               }}
             />
           </div>
-          <div ref={refOne} className="absolute -right-6 z-50 scale-75">
+          <div ref={refOne} className="absolute -right-6 top-3 z-50 scale-75">
             {showCalender ? (
               <DateRange
                 className="rounded-xl"

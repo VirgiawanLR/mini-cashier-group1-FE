@@ -55,7 +55,6 @@ function PopUp() {
 
   return (
     <>
-      (
       <div
         className=" fixed h-screen w-screen top-0 left-0
           modal-container z-50 flex justify-center items-center text-dark"
@@ -171,7 +170,6 @@ function PopUp() {
           )}
         </div>
       </div>
-      )
     </>
   );
 }

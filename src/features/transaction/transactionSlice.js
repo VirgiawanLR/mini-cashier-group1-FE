@@ -70,7 +70,6 @@ export function getDataTransaction({ start, end, offset, limit }) {
     if (start && end) {
       start += " 00:00:00";
       end += " 23:59:59";
-      console.log(start, end);
       getAPI += `start=${start}&end=${end}&`;
     }
     getAPI += `offset=${offset}&limit=${limit}`;
@@ -118,11 +117,10 @@ export function getGrossIncome({ start, end }) {
   return async (dispatch) => {
     let endPoint = `${transAPI}/gross/daily`;
     if (start && end) {
-      start = start.toISOString().split("T")[0] + " 00:00:00";
-      end = end.toISOString().split("T")[0] + " 23:59:59";
+      start = start + " 00:00:00";
+      end = end + " 23:59:59";
       endPoint += `?start=${start}&end=${end}`;
     }
-    console.log(endPoint);
     try {
       let response = await axios.get(endPoint, {
         headers: {
@@ -130,7 +128,13 @@ export function getGrossIncome({ start, end }) {
         },
       });
       const { message, isSuccess, data } = response.data;
-      dispatch(setTotalGross(data));
+      const newData = checkZeroTransactionDay({
+        start,
+        end,
+        data,
+        field: "total_gross",
+      });
+      dispatch(setTotalGross(newData));
       return { message, isSuccess };
     } catch (error) {
       return { ...error.response.data };
@@ -142,11 +146,10 @@ export function getTotalOrder({ start, end }) {
   return async (dispatch) => {
     let endPoint = `${transAPI}/total-order/daily`;
     if (start && end) {
-      start = start.toISOString().split("T")[0] + " 00:00:00";
-      end = end.toISOString().split("T")[0] + " 23:59:59";
+      start = start + " 00:00:00";
+      end = end + " 23:59:59";
       endPoint += `?start=${start}&end=${end}`;
     }
-    console.log(endPoint);
     try {
       let response = await axios.get(endPoint, {
         headers: {
@@ -154,10 +157,60 @@ export function getTotalOrder({ start, end }) {
         },
       });
       const { message, isSuccess, data } = response.data;
-      dispatch(setTotalOrder(data));
+      const newData = checkZeroTransactionDay({
+        start,
+        end,
+        data,
+        field: "total_transaction",
+      });
+      dispatch(setTotalOrder(newData));
       return { message, isSuccess };
     } catch (error) {
       return { ...error.response.data };
     }
   };
+}
+
+export function checkZeroTransactionDay({ start, end, data, field }) {
+  let range;
+  if (!(start && end)) {
+    range = 6;
+    end = new Date();
+    start = new Date().setDate(end.getDate() - range);
+    start = new Date(start).toISOString().split("T")[0];
+  } else {
+    start = start.split(" ")[0];
+    end = end.split(" ")[0];
+    if (start === end) {
+      if (data.length === 0) {
+        let returndata = { date_column: start };
+        returndata[field] = "0";
+        return [returndata];
+      }
+      return data;
+    }
+    let startmilis = new Date(start).getTime();
+    let endmilis = new Date(end).getTime();
+    range = (endmilis - startmilis) / (1000 * 60 * 60 * 24);
+  }
+  let newDataArr = [start];
+  for (let i = 1; i <= range; i++) {
+    let tomorrow = new Date(start);
+    tomorrow.setDate(tomorrow.getDate() + i);
+    newDataArr.push(tomorrow.toISOString().split("T")[0]);
+  }
+  newDataArr = newDataArr.reverse();
+  let prevDataIndex = 0;
+  newDataArr = newDataArr.map((item) => {
+    let singleData = { date_column: item };
+    if (item === data[prevDataIndex]?.date_column) {
+      singleData[field] = data[prevDataIndex][field].toString();
+      prevDataIndex += 1;
+      return singleData;
+    } else {
+      singleData[field] = "0";
+      return singleData;
+    }
+  });
+  return newDataArr;
 }

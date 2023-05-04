@@ -12,7 +12,9 @@ function TotalSectionItem(props) {
               style: "currency",
               currency: "IDR",
             })
-          : `${props.item.total_transaction} order(s)`}
+          : `${props.item.total_transaction} ${
+              parseInt(props.item.total_transaction) > 1 ? "orders" : "order"
+            }`}
       </h1>
     </div>
   );

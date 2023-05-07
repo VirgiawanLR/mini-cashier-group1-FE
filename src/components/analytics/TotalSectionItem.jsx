@@ -8,12 +8,12 @@ function TotalSectionItem(props) {
       </h1>
       <h1 className="text-xs">
         {props.from === "Sales"
-          ? parseInt(props.item.total_gross).toLocaleString("id-ID", {
+          ? props.item.total_gross.toLocaleString("id-ID", {
               style: "currency",
               currency: "IDR",
             })
           : `${props.item.total_transaction} ${
-              parseInt(props.item.total_transaction) > 1 ? "orders" : "order"
+              props.item.total_transaction > 1 ? "orders" : "order"
             }`}
       </h1>
     </div>

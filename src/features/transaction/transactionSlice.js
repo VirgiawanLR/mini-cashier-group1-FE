@@ -11,6 +11,8 @@ export const transactionSlice = createSlice({
     dataAndPageCount: {},
     totalGrossList: [],
     totalOrderList: [],
+    categories: [],
+    topProduct: [],
   },
   reducers: {
     setTransactionList: (state, action) => {
@@ -28,6 +30,12 @@ export const transactionSlice = createSlice({
     setTotalOrder: (state, action) => {
       state.totalOrderList = action.payload;
     },
+    setCategories: (state, action) => {
+      state.categories = action.payload;
+    },
+    setTopProduct: (state, action) => {
+      state.topProduct = action.payload;
+    },
   },
 });
 
@@ -39,6 +47,8 @@ export const {
   setDataAndPageCount,
   setTotalGross,
   setTotalOrder,
+  setCategories,
+  setTopProduct,
 } = transactionSlice.actions;
 
 export function newTransaction({ transaction_list, transaction_price }) {
@@ -128,13 +138,8 @@ export function getGrossIncome({ start, end }) {
         },
       });
       const { message, isSuccess, data } = response.data;
-      const newData = checkZeroTransactionDay({
-        start,
-        end,
-        data,
-        field: "total_gross",
-      });
-      dispatch(setTotalGross(newData));
+
+      dispatch(setTotalGross(data));
       return { message, isSuccess };
     } catch (error) {
       return { ...error.response.data };
@@ -157,13 +162,8 @@ export function getTotalOrder({ start, end }) {
         },
       });
       const { message, isSuccess, data } = response.data;
-      const newData = checkZeroTransactionDay({
-        start,
-        end,
-        data,
-        field: "total_transaction",
-      });
-      dispatch(setTotalOrder(newData));
+
+      dispatch(setTotalOrder(data));
       return { message, isSuccess };
     } catch (error) {
       return { ...error.response.data };
@@ -171,46 +171,38 @@ export function getTotalOrder({ start, end }) {
   };
 }
 
-export function checkZeroTransactionDay({ start, end, data, field }) {
-  let range;
-  if (!(start && end)) {
-    range = 6;
-    end = new Date();
-    start = new Date().setDate(end.getDate() - range);
-    start = new Date(start).toISOString().split("T")[0];
-  } else {
-    start = start.split(" ")[0];
-    end = end.split(" ")[0];
-    if (start === end) {
-      if (data.length === 0) {
-        let returndata = { date_column: start };
-        returndata[field] = "0";
-        return [returndata];
-      }
-      return data;
+export function getCategories() {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(`${transAPI}/categories`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+        },
+      });
+      const { message, isSuccess, data } = response.data;
+      dispatch(setCategories({ message, isSuccess, data }));
+    } catch (error) {
+      return { ...error.response.data };
     }
-    let startmilis = new Date(start).getTime();
-    let endmilis = new Date(end).getTime();
-    range = (endmilis - startmilis) / (1000 * 60 * 60 * 24);
-  }
-  let newDataArr = [start];
-  for (let i = 1; i <= range; i++) {
-    let tomorrow = new Date(start);
-    tomorrow.setDate(tomorrow.getDate() + i);
-    newDataArr.push(tomorrow.toISOString().split("T")[0]);
-  }
-  newDataArr = newDataArr.reverse();
-  let prevDataIndex = 0;
-  newDataArr = newDataArr.map((item) => {
-    let singleData = { date_column: item };
-    if (item === data[prevDataIndex]?.date_column) {
-      singleData[field] = data[prevDataIndex][field].toString();
-      prevDataIndex += 1;
-      return singleData;
-    } else {
-      singleData[field] = "0";
-      return singleData;
+  };
+}
+
+export function getTopProductByCategory(category_ID) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(
+        `${transAPI}/categories/top-product?category_ID=${category_ID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+          },
+        }
+      );
+
+      const { message, isSuccess, data } = response.data;
+      dispatch(setTopProduct({ message, isSuccess, data }));
+    } catch (error) {
+      return { ...error.response.data };
     }
-  });
-  return newDataArr;
+  };
 }

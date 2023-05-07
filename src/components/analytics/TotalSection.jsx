@@ -32,14 +32,14 @@ function TotalSection(props) {
     }
   };
 
-  const ifSales = async (start, end) => {
+  const getTotalSalesDaily = async (start, end) => {
     let response = await dispatch(getGrossIncome({ start, end }));
     if (response.message) {
       setIsPageLoading(false);
     }
   };
 
-  const ifOrder = async (start, end) => {
+  const getTotalOrderDaily = async (start, end) => {
     let response = await dispatch(getTotalOrder({ start, end }));
     if (response.message) {
       setIsPageLoading(false);
@@ -61,9 +61,9 @@ function TotalSection(props) {
   useEffect(() => {
     document.addEventListener("click", hideOnClickOutside, true);
     if (props.total === "Sales") {
-      ifSales(null, null);
+      getTotalSalesDaily(null, null);
     } else {
-      ifOrder(null, null);
+      getTotalOrderDaily(null, null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,12 +72,12 @@ function TotalSection(props) {
     if (showCalender) {
       setIsPageLoading(false);
       if (props.total === "Sales") {
-        ifSales(
+        getTotalSalesDaily(
           format(dateState[0].startDate, "yyyy-MM-dd"),
           format(dateState[0].endDate, "yyyy-MM-dd")
         );
       } else {
-        ifOrder(
+        getTotalOrderDaily(
           format(dateState[0].startDate, "yyyy-MM-dd"),
           format(dateState[0].endDate, "yyyy-MM-dd")
         );

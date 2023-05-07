@@ -1,5 +1,6 @@
 import React from "react";
 import TotalSection from "./TotalSection";
+import TopCategories from "./TopCategories";
 
 function AnalyticsContent() {
   return (
@@ -22,7 +23,9 @@ function AnalyticsContent() {
             <TotalSection total={"Order"} />
           </div>
         </div>
-        <div className=" row-span-3 mb-12 bg-white rounded-xl"></div>
+        <div className=" row-span-3 mb-2 bg-white rounded-xl">
+          <TopCategories />
+        </div>
       </div>
     </div>
   );

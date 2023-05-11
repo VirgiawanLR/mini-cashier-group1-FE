@@ -28,10 +28,10 @@ function Cart() {
   };
 
   return (
-    <section className="bg-white h-screen overflow-y-scroll">
+    <section className="bg-white h-screen overflow-y-auto">
       {modalState ? <PopUp /> : null}
-      <div className="px-4 pt-8 flex flex-col gap-4">
-        <div className="flex items-center gap-2">
+      <div className="px-4 grid grid-rows-10 h-full">
+        <div className="flex items-center gap-2 mt-12">
           <div>
             <i
               className="uil uil-shopping-cart-alt text-primary
@@ -58,12 +58,21 @@ function Cart() {
         </div>
         {cart.length > 0 ? (
           <>
-            <div className="bg-lighter text-dark rounded-3xl mt-2 mb-2">
-              <div className="flex flex-col gap-4 pt-8 px-4 pb-10">
+            <div
+              className="bg-lighter text-dark rounded-3xl mb-2
+            row-span-6 grid grid-row-6 py-6 px-4 mt-12"
+            >
+              <div
+                className="row-span-6 flex flex-col gap-4 
+              overflow-y-auto"
+              >
                 {renderCart()}
               </div>
             </div>
-            <div className="bg-lighter text-dark rounded-3xl mt-0 mb-4">
+            <div
+              className="bg-lighter text-dark row-span-2 
+            rounded-3xl my-4"
+            >
               <div className="flex flex-col py-5 px-8">
                 <h3 className="text-base font-medium">TOTAL</h3>
                 <h1 className="text-lg font-bold">{totalPrice()}</h1>
@@ -73,12 +82,11 @@ function Cart() {
               onClick={() => {
                 dispatch(setModalState(true));
               }}
-              className="bg-secondary
+              className="row-span-1 bg-secondary
               text-white font-bold
               rounded-full
-              py-2 px-10
+              py-2 px-10 mb-6
               w-3/4 mx-auto
-              bottom-0 mb-6
               shadow-lg
               hover:scale-105
               transition ease-in-out delay-50

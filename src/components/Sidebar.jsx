@@ -27,12 +27,12 @@ flex
           className="
                 font-semibold 
                 text-5xl 
-                tracking-tightest
+                -tracking-widest
                 text-white 
                 hover:cursor-pointer 
                 hover:text-light
-                py-12
-                text-center
+                py-8
+                flex items-center justify-center
                 "
         >
           tokoku

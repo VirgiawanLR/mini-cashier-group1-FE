@@ -31,27 +31,28 @@ function ProductHome() {
   }, [selectProductList]);
 
   return (
-    <div className=" h-screen flex flex-col gap-2 mx-auto bg-light p-10">
+    <div
+      className=" h-screen max-h-screen
+     flex flex-col gap-2 mx-auto bg-light p-10"
+    >
       <div>
-        <h1 className="text-2xl font-bold bg-red">Product Home</h1>
+        <h1 className="text-2xl text-dark font-bold mb-4">Product Home</h1>
       </div>
 
       {/* cards & pagination */}
-      <div className="flex flex-col">
+      <div className="flex flex-col overflow-y-auto pr-4">
         <div
           className="
 
             grid grid-cols-3 gap-3
-            bg-dark
-            p-5 h-full w-full
+             h-full w-full
             items-center
             "
         >
           {renderProductList()}
-        </div>
-
-        <div>
-          <Pagination />
+          <div className=" col-span-3">
+            <Pagination />
+          </div>
         </div>
       </div>
     </div>

@@ -58,15 +58,15 @@ function Cart() {
         </div>
         {cart.length > 0 ? (
           <>
-            <div className="bg-lighter text-dark rounded-3xl my-8">
-              <div className="flex flex-col gap-4 pt-8 px-4 pb-16">
+            <div className="bg-lighter text-dark rounded-3xl mt-2 mb-2">
+              <div className="flex flex-col gap-4 pt-8 px-4 pb-10">
                 {renderCart()}
               </div>
             </div>
             <div className="bg-lighter text-dark rounded-3xl mt-0 mb-4">
-              <div className="flex flex-col py-8 px-8">
+              <div className="flex flex-col py-5 px-8">
                 <h3 className="text-base font-medium">TOTAL</h3>
-                <h1 className="text-xl font-bold">{totalPrice()}</h1>
+                <h1 className="text-lg font-bold">{totalPrice()}</h1>
               </div>
             </div>
             <button
@@ -78,7 +78,7 @@ function Cart() {
               rounded-full
               py-2 px-10
               w-3/4 mx-auto
-              bottom-0 mb-8
+              bottom-0 mb-6
               shadow-lg
               hover:scale-105
               transition ease-in-out delay-50

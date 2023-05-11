@@ -9,6 +9,10 @@ export const transactionSlice = createSlice({
     transactionList: [],
     singleTransaction: {},
     dataAndPageCount: {},
+    totalGrossList: [],
+    totalOrderList: [],
+    categories: [],
+    topProduct: [],
   },
   reducers: {
     setTransactionList: (state, action) => {
@@ -20,13 +24,32 @@ export const transactionSlice = createSlice({
     setDataAndPageCount: (state, action) => {
       state.dataAndPageCount = action.payload;
     },
+    setTotalGross: (state, action) => {
+      state.totalGrossList = action.payload;
+    },
+    setTotalOrder: (state, action) => {
+      state.totalOrderList = action.payload;
+    },
+    setCategories: (state, action) => {
+      state.categories = action.payload;
+    },
+    setTopProduct: (state, action) => {
+      state.topProduct = action.payload;
+    },
   },
 });
 
 export default transactionSlice.reducer;
 
-export const { setTransactionList, setSingleTransData, setDataAndPageCount } =
-  transactionSlice.actions;
+export const {
+  setTransactionList,
+  setSingleTransData,
+  setDataAndPageCount,
+  setTotalGross,
+  setTotalOrder,
+  setCategories,
+  setTopProduct,
+} = transactionSlice.actions;
 
 export function newTransaction({ transaction_list, transaction_price }) {
   return async (dispatch) => {
@@ -57,7 +80,6 @@ export function getDataTransaction({ start, end, offset, limit }) {
     if (start && end) {
       start += " 00:00:00";
       end += " 23:59:59";
-      console.log(start, end);
       getAPI += `start=${start}&end=${end}&`;
     }
     getAPI += `offset=${offset}&limit=${limit}`;
@@ -95,6 +117,90 @@ export function getDetailTransaction(transaction_ID) {
       const { message, isSuccess, data } = response.data;
       dispatch(setSingleTransData(data));
       return { message, isSuccess };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function getGrossIncome({ start, end }) {
+  return async (dispatch) => {
+    let endPoint = `${transAPI}/gross/daily`;
+    if (start && end) {
+      start = start + " 00:00:00";
+      end = end + " 23:59:59";
+      endPoint += `?start=${start}&end=${end}`;
+    }
+    try {
+      let response = await axios.get(endPoint, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+        },
+      });
+      const { message, isSuccess, data } = response.data;
+
+      dispatch(setTotalGross(data));
+      return { message, isSuccess };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function getTotalOrder({ start, end }) {
+  return async (dispatch) => {
+    let endPoint = `${transAPI}/total-order/daily`;
+    if (start && end) {
+      start = start + " 00:00:00";
+      end = end + " 23:59:59";
+      endPoint += `?start=${start}&end=${end}`;
+    }
+    try {
+      let response = await axios.get(endPoint, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+        },
+      });
+      const { message, isSuccess, data } = response.data;
+
+      dispatch(setTotalOrder(data));
+      return { message, isSuccess };
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function getCategories() {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(`${transAPI}/categories`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+        },
+      });
+      const { message, isSuccess, data } = response.data;
+      dispatch(setCategories({ message, isSuccess, data }));
+    } catch (error) {
+      return { ...error.response.data };
+    }
+  };
+}
+
+export function getTopProductByCategory(category_ID) {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(
+        `${transAPI}/categories/top-product?category_ID=${category_ID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+          },
+        }
+      );
+
+      const { message, isSuccess, data } = response.data;
+      dispatch(setTopProduct({ message, isSuccess, data }));
     } catch (error) {
       return { ...error.response.data };
     }

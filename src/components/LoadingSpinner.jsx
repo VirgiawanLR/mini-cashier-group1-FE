@@ -1,7 +1,7 @@
 import React from "react";
 
 function LoadingSpinner(props) {
-  const { bg, fill, base } = props;
+  const { bg, base } = props;
   return (
     <div
       className={`h-full bg-${bg} flex items-center justify-center`}
@@ -9,7 +9,7 @@ function LoadingSpinner(props) {
     >
       <div>
         <svg
-          className={`w-8 h-8 mr-2 text-${base} animate-spin fill-${fill}`}
+          className={`w-8 h-8 mr-2 text-${base} animate-spin fill-dark`}
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ function LoadingSpinner(props) {
             fill="currentFill"
           />
         </svg>
-        <span class="sr-only">Loading...</span>
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );
